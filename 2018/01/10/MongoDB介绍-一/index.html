@@ -8,20 +8,20 @@
   <link rel="dns-prefetch" href="http://www.gaozhy.cn">
   <title>MongoDB介绍 (一) | 高志逺的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、简介MongoDB是一款免费开源的文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 优点：高可用、可扩展、低成本、数据结构灵活 缺点：弱化事务   二、 特点 数据存储格式为 BSON（一种二进制形式的存储格式，类似于 JSON） 丰富的查询语言（">
+  <meta name="description" content="一、简介MongoDB是一款免费开源的文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 优点：高可用、可扩展、低成本、数据结构灵活 缺点：弱化事务">
 <meta name="keywords" content="NOSQL,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB介绍 (一)">
 <meta property="og:url" content="http://www.gaozhy.cn/2018/01/10/MongoDB介绍-一/index.html">
 <meta property="og:site_name" content="高志逺的博客">
-<meta property="og:description" content="一、简介MongoDB是一款免费开源的文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 优点：高可用、可扩展、低成本、数据结构灵活 缺点：弱化事务   二、 特点 数据存储格式为 BSON（一种二进制形式的存储格式，类似于 JSON） 丰富的查询语言（">
+<meta property="og:description" content="一、简介MongoDB是一款免费开源的文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 优点：高可用、可扩展、低成本、数据结构灵活 缺点：弱化事务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/10/MongoDB介绍-一/.png">
-<meta property="og:updated_time" content="2018-01-10T09:27:56.825Z">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/10/MongoDB介绍-一/1.png">
+<meta property="og:updated_time" content="2018-01-10T09:33:32.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB介绍 (一)">
-<meta name="twitter:description" content="一、简介MongoDB是一款免费开源的文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 优点：高可用、可扩展、低成本、数据结构灵活 缺点：弱化事务   二、 特点 数据存储格式为 BSON（一种二进制形式的存储格式，类似于 JSON） 丰富的查询语言（">
-<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/10/MongoDB介绍-一/.png">
+<meta name="twitter:description" content="一、简介MongoDB是一款免费开源的文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 优点：高可用、可扩展、低成本、数据结构灵活 缺点：弱化事务">
+<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/10/MongoDB介绍-一/1.png">
   
     <link rel="alternative" href="/atom.xml" title="高志逺的博客" type="application/atom+xml">
   
@@ -173,17 +173,16 @@
 <ol>
 <li><em>NOSQL(not only sql)：</em>指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。</li>
 <li>优点：高可用、可扩展、低成本、数据结构灵活</li>
-<li>缺点：弱化事务</li>
-</ol>
-</blockquote>
-<h3 id="二、-特点"><a href="#二、-特点" class="headerlink" title="二、 特点"></a>二、 特点</h3><ol>
-<li>数据存储格式为 <em>BSON</em>（一种二进制形式的存储格式，类似于 <em>JSON</em>）<br><img src=".png" alt=""></li>
+<li>缺点：弱化事务<a id="more"></a>
+<h3 id="二、-特点"><a href="#二、-特点" class="headerlink" title="二、 特点"></a>二、 特点</h3></li>
+<li>数据存储格式为 <em>BSON</em>（一种二进制形式的存储格式，类似于 <em>JSON</em>）<br><img src="1.png" alt=""></li>
 <li>丰富的查询语言（CRUD、数据聚合、全文检索、地理位置查询）</li>
 <li>高可用（副本集）</li>
 <li>水平扩展,支持海量数据存储（分片）</li>
 <li>MongoDB支持各种编程语言:RUBY，PYTHON，JAVA，C++，PHP，C#等多种语言。</li>
 <li>支持完全索引</li>
 </ol>
+</blockquote>
 <h3 id="三、-MongoDB中概念解析"><a href="#三、-MongoDB中概念解析" class="headerlink" title="三、 MongoDB中概念解析"></a>三、 MongoDB中概念解析</h3><table>
 <thead>
 <tr>
@@ -510,15 +509,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">诗和远方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">诗和远方</a>
               </li>
             
             <div class="clearfix"></div>
