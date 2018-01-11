@@ -6,30 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.gaozhy.cn">
-  <title>Solr轻松入门 | 高志逺的博客</title>
+  <title>MongoDB概述 (一) | 高志逺的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Solr概述 Solr是Apache下的顶级项目，采用java开发，它是基于Lucene的全文检索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。 Solr可以运行在Jetty、Tomcat等Web服务器。">
-<meta name="keywords" content="全文检索,引擎">
+  <meta name="description" content="一、简介MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 NOSQL优点：高可用、可扩展、低成本、数据结构灵活 NOSQL缺点：弱化事务">
+<meta name="keywords" content="NOSQL,数据库">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Solr轻松入门">
-<meta property="og:url" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/index.html">
+<meta property="og:title" content="MongoDB概述 (一)">
+<meta property="og:url" content="http://www.gaozhy.cn/2018/01/10/MongoDB概述/index.html">
 <meta property="og:site_name" content="高志逺的博客">
-<meta property="og:description" content="1. Solr概述 Solr是Apache下的顶级项目，采用java开发，它是基于Lucene的全文检索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。 Solr可以运行在Jetty、Tomcat等Web服务器。">
+<meta property="og:description" content="一、简介MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 NOSQL优点：高可用、可扩展、低成本、数据结构灵活 NOSQL缺点：弱化事务">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/logo.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/1.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/2.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/4.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/3.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/5.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/6.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/7.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/8.jpg">
-<meta property="og:updated_time" content="2018-01-07T03:30:31.797Z">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/10/MongoDB概述/1.png">
+<meta property="og:updated_time" content="2018-01-11T01:23:17.629Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Solr轻松入门">
-<meta name="twitter:description" content="1. Solr概述 Solr是Apache下的顶级项目，采用java开发，它是基于Lucene的全文检索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。 Solr可以运行在Jetty、Tomcat等Web服务器。">
-<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/logo.jpg">
+<meta name="twitter:title" content="MongoDB概述 (一)">
+<meta name="twitter:description" content="一、简介MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 NOSQL优点：高可用、可扩展、低成本、数据结构灵活 NOSQL缺点：弱化事务">
+<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/10/MongoDB概述/1.png">
   
     <link rel="alternative" href="/atom.xml" title="高志逺的博客" type="application/atom+xml">
   
@@ -155,261 +147,85 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Solr轻松入门" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-MongoDB概述" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Solr轻松入门
+      MongoDB概述 (一)
     </h1>
   
 
         
-        <a href="/2018/01/07/Solr轻松入门/" class="archive-article-date">
-  	<time datetime="2018-01-07T03:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
+        <a href="/2018/01/10/MongoDB概述/" class="archive-article-date">
+  	<time datetime="2018-01-10T09:25:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/2018/01/07/Solr轻松入门/logo.jpg" title="学习笔记">
-<h2 id="1-Solr概述"><a href="#1-Solr概述" class="headerlink" title="1. Solr概述"></a>1. Solr概述</h2><ul>
-<li>Solr是Apache下的顶级项目，采用java开发，它是基于Lucene的全文检索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。</li>
-<li>Solr可以运行在Jetty、Tomcat等Web服务器。</li>
-</ul>
+        
+<h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><h5 id="MongoDB-是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。"><a href="#MongoDB-是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。" class="headerlink" title="MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。"></a><em><a href="https://www.mongodb.com/what-is-mongodb" target="_blank" rel="noopener">MongoDB</a></em> 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。</h5><blockquote>
+<p><strong>Note:</strong></p>
+<ol>
+<li><em>NOSQL(not only sql)：</em>指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。</li>
+<li><em>NOSQL</em>优点：高可用、可扩展、低成本、数据结构灵活</li>
+<li><em>NOSQL</em>缺点：弱化事务</li>
+</ol>
+</blockquote>
 <a id="more"></a>
-<h2 id="2-Solr架构（体系架构）"><a href="#2-Solr架构（体系架构）" class="headerlink" title="2. Solr架构（体系架构）"></a>2. Solr架构（体系架构）</h2><ul>
-<li>系统架构图<br>  <img src="1.jpg" alt=""></li>
-<li>组件<ul>
-<li><strong>请求处理程序</strong>  - 发送到<strong>Apache Solr</strong>的请求由这些请求处理程序处理。请求可以是查询请求或索引更新请求。根据这些请示的要求来选择请求处理程序。为了将请求传递给Solr，通常将处理器映射到某个URI端点，并且它将为指定的请求提供服务。</li>
-<li><strong>搜索组件</strong>  -  搜索组件是<strong>Apache Solr</strong>中提供的搜索类型(功能)。它可能是拼写检查，查询，构面，命中突出显示等。这些搜索组件被注册为搜索处理程序。多个组件可以注册到搜索处理程序。</li>
-<li><strong>查询解析器</strong>− <strong>Apache Solr</strong>查询解析器解析传递给Solr的查询，并验证查询的语法是否有错误。解析查询后，将它们转换为Lucene理解的格式。</li>
-<li><strong>响应写入器</strong> - <strong>Apache Solr</strong>中的响应写入器是为用户查询生成格式化输出的组件。 Solr支持XML，JSON，CSV等响应格式。对每种类型的响应都有不同的响应写入。</li>
-<li><strong>分析器/分词器</strong> - Lucene以令牌的形式识别数据。 Apache Solr分析内容，将其分成令牌，并将这些令牌传递给Lucene。 Apache Solr中的分析器检查字段的文本并生成令牌流。分词器将分析器准备的令牌流分解成令牌。</li>
-<li><strong>更新请求处理器</strong>- 每当向Apache Solr发送更新请求时，请求都通过一组称为更新请求处理器的插件(签名，日志记录，索引)运行。这个处理器负责修改，例如删除字段，添加字段等。</li>
-</ul>
-</li>
-</ul>
-<h2 id="3-Solr安装和环境搭建"><a href="#3-Solr安装和环境搭建" class="headerlink" title="3. Solr安装和环境搭建"></a>3. Solr安装和环境搭建</h2><ul>
-<li>下载（windows：版本号：solr-5.5.0.zip）</li>
-<li>Solr目录介绍<ol>
-<li>bin： 运行脚本目录</li>
-<li>contrib： 插件目录</li>
-<li>dist： solr相关jar包</li>
-<li>doc： 文档目录</li>
-<li>example： solr示例项目</li>
-<li>server： 服务相关数据</li>
+<h3 id="二、-特点"><a href="#二、-特点" class="headerlink" title="二、 特点"></a>二、 特点</h3><ol>
+<li>数据存储格式为 <em>BSON</em>（一种二进制形式的存储格式，类似于 <em>JSON</em>）<br><img src="1.png" alt=""></li>
+<li>丰富的查询语言（CRUD、数据聚合、全文检索、地理位置查询）</li>
+<li>高可用（副本集）</li>
+<li>水平扩展,支持海量数据存储（分片）</li>
+<li>MongoDB支持各种编程语言:RUBY，PYTHON，JAVA，C++，PHP，C#等多种语言。</li>
+<li>支持完全索引</li>
 </ol>
-</li>
-<li>Solr所需环境<ol>
-<li>jdk1.7+、Web服务器Tomcat8.0</li>
-</ol>
-</li>
-<li><p>Solr和Tomcat整合</p>
-<ol>
-<li>在tomcat的webapps目录新建文件夹solr，并将solr-5.5.0\server\solr-webapp\webapp目录下的所有资源复制过来</li>
-<li>将solr-5.5.0\server\lib\ext下的所有jar包复制到tomcat\webapps\solr\WEB-INF\lib</li>
-<li>将solr-5.5.0\server\resources\log4j.properties文件复制到tomcat\webapps\solr\WEB-INF\classes目录（<em>如果没有classes目录请新建</em>）</li>
-<li>在tomcat目录下新建solr-home文件夹 </li>
-<li>将solr-5.5.0\server\solr目录下的所有文件复制到tomcat\solr-home目录</li>
-<li><p>修改tomcat\webapps\solr\WEB-INF\web.xml文件,指定solr-home目录</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--取消注释，并配置solr-home--&gt;</span><br><span class="line">&lt;env-entry&gt;</span><br><span class="line">      &lt;env-entry-name&gt;solr/home&lt;/env-entry-name&gt;</span><br><span class="line">      &lt;env-entry-value&gt;F:\solr\tomcat\solr-home&lt;/env-entry-value&gt;</span><br><span class="line">      &lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;</span><br><span class="line">   &lt;/env-entry&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>启动tomcat，输入地址<a href="http://localhost:8080/solr/admin.html" title="http://localhost:8080/solr/admin.html" target="_blank" rel="noopener">http://localhost:8080/solr/admin.html</a></p>
-</li>
-<li>在tomcat\solr-home\目录下新建core</li>
-<li>将tomcat\solr-home\configsets\basic_configs\conf文件夹复制到tomcat\solr-home\core目录下</li>
-<li>重启tomcat，打开浏览器输入网址<a href="http://localhost:8080/solr/admin.html" title="http://localhost:8080/solr/admin.html" target="_blank" rel="noopener">http://localhost:8080/solr/admin.html</a></li>
-<li>添加core<br><img src="2.jpg" alt=""></li>
-</ol>
-</li>
-</ul>
-<h2 id="4-solr的相关配置文件"><a href="#4-solr的相关配置文件" class="headerlink" title="4. solr的相关配置文件"></a>4. solr的相关配置文件</h2><ul>
-<li><p>managed-schema配置文件</p>
-<ol>
-<li><p>type部分</p>
-<blockquote>
-<p>fieldType 是一些常见的可重用定义，定义了 Solr（和 Lucene）如何处理 Field。也就是添加到索引中的xml文件属性中的类型，如int、text、date等。    </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;fieldType name=&quot;tint&quot; class=&quot;solr.TrieIntField&quot; precisionStep=&quot;8&quot; positionIncrementGap=&quot;0&quot;/&gt;</span><br><span class="line">   &lt;fieldType name=&quot;tfloat&quot; class=&quot;solr.TrieFloatField&quot; precisionStep=&quot;8&quot; positionIncrementGap=&quot;0&quot;/&gt;</span><br><span class="line">   &lt;fieldType name=&quot;tlong&quot; class=&quot;solr.TrieLongField&quot; precisionStep=&quot;8&quot; positionIncrementGap=&quot;0&quot;/&gt;</span><br><span class="line">   &lt;fieldType name=&quot;tdouble&quot; class=&quot;solr.TrieDoubleField&quot; precisionStep=&quot;8&quot; positionIncrementGap=&quot;0&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>fields部分</p>
-<blockquote>
-<p>filed是你添加到索引文件中出现的属性名称</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;field name=&quot;_root_&quot; type=&quot;string&quot; indexed=&quot;true&quot; stored=&quot;false&quot;/&gt;</span><br><span class="line">&lt;dynamicField name=&quot;*_i&quot;  type=&quot;int&quot;    indexed=&quot;true&quot;  stored=&quot;true&quot;/&gt;</span><br><span class="line">&lt;!-- 复制field 从source到dest 分词前复制 经过不同的分词器可以得到不同的分词结果 --&gt;</span><br><span class="line">&lt;copyField source=&quot;title&quot; dest=&quot;text&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</blockquote>
-</li>
-<li><p>其它配置<br> a. uniqueKey：唯一键，这里配置的是上面出现的fileds，一般是id、url等不重复的。在更新、删除的时候可以用到<br> b. defaultSearchField：默认搜索属性，如q=solr就是默认的搜索那个字段<br> c. solrQueryParser：查询转换模式，是并且还是或者（AND/OR必须大写）  </p>
-</li>
-</ol>
-</li>
-<li><p>solrconfig.xml</p>
-<blockquote>
-<p>solr的核心配置文件,该配置文件主要定义了solr的一些处理规则，包括索引数据的存放位置，更新，删除，查询的一些规则配置</p>
-</blockquote>
-<ol>
-<li><p>dataDir </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--定义了索引数据和日志文件的存放位置--&gt;</span><br><span class="line">&lt;dataDir&gt;$&#123;solr.data.dir:d:/Server/Solr/data&#125;&lt;/dataDir&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>luceneMatchVersion </p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--solr底层使用的是lucene4.8--&gt;</span><br><span class="line">&lt;luceneMatchVersion&gt;4.8&lt;/luceneMatchVersion&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>directoryFactory 索引存储方案 默认为NRTCachingDirectoryFactory</p>
-</li>
-<li>codecFactory 编解码工厂  定义了索引格式工具</li>
-<li>indexconfig  索引配置</li>
-<li>updateHandler 更新器</li>
-<li>query</li>
-<li>requestDispatcher 请求转发器</li>
-<li><p>requestHandler 请求处理器</p>
-<blockquote>
-<p>输入的请求会通过请求中的路径被转发到特定的处理器</p>
-</blockquote>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--SearchHandler基本的请求处理器是SearchHandler,它提供一系列SearchComponents,通过multiple shards支持分布式--&gt;</span><br><span class="line">&lt;requestHandler name=&quot;/select&quot; class=&quot;solr.SearchHandler&quot;&gt;</span><br><span class="line">   &lt;!-- default values for query parameters can be specified, these</span><br><span class="line">        will be overridden by parameters in the request</span><br><span class="line">     --&gt;</span><br><span class="line">    &lt;lst name=&quot;defaults&quot;&gt;</span><br><span class="line">      &lt;str name=&quot;echoParams&quot;&gt;explicit&lt;/str&gt;</span><br><span class="line">      &lt;int name=&quot;rows&quot;&gt;10&lt;/int&gt;</span><br><span class="line">    &lt;/lst&gt;</span><br><span class="line">	</span><br><span class="line">   &lt;/requestHandler&gt;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-</li>
-</ul>
-<h2 id="5-solr整合中文分词器（IK、mmseg4j、smartcn）"><a href="#5-solr整合中文分词器（IK、mmseg4j、smartcn）" class="headerlink" title="5. solr整合中文分词器（IK、mmseg4j、smartcn）"></a>5. solr整合中文分词器（IK、mmseg4j、smartcn）</h2><ul>
-<li><p>IK中文分词器</p>
-<ol>
-<li>将ikanalyzer-solr5\ik-analyzer-solr5-5.x.jar复制到tomcat\webapps\solr\WEB-INF\lib目录</li>
-<li><p>修改solr-home\baizhi\conf\managed-schema，新增</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--添加域 并使用ik分词--&gt;</span><br><span class="line">&lt;field name=&quot;name&quot; type=&quot;text_ik&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- 添加的IK分词 --&gt;</span><br><span class="line">   &lt;fieldType name=&quot;text_ik&quot; class=&quot;solr.TextField&quot;&gt;   </span><br><span class="line">     &lt;analyzer type=&quot;index&quot; isMaxWordLength=&quot;false&quot; class=&quot;org.wltea.analyzer.lucene.IKAnalyzer&quot;/&gt;   </span><br><span class="line">     &lt;analyzer type=&quot;query&quot; isMaxWordLength=&quot;true&quot; class=&quot;org.wltea.analyzer.lucene.IKAnalyzer&quot;/&gt;   </span><br><span class="line">   &lt;/fieldType&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>ikanalyzer-solr5\目录下的IKAnalyzer.cfg.xml、ext.dic、stopword.dic文件拷贝到tomcat\webapps\solr\WEB-INF\classes</p>
-</li>
-<li>重启tomcat</li>
-<li>测试中文分词<br> <img src="4.jpg" alt="ik中文分词测试"></li>
-</ol>
-</li>
-<li><p>mmseg4j中文分词器</p>
-<ol>
-<li>将mmseg4j-core-1.10.0.jar、mmseg4j-solr-2.3.0.jar复制到tomcat\webapps\solr\WEB-INF\lib目录</li>
-<li><p>修改solr-home\baizhi\conf\managed-schema，新增</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--测试mmseg4j--&gt;</span><br><span class="line">  	&lt;field name=&quot;mmseg4j_name&quot; type=&quot;textComplex&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--mmseg4j中文分词器--&gt;</span><br><span class="line">   &lt;fieldtype name=&quot;textComplex&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot;&gt;</span><br><span class="line">     &lt;analyzer&gt;</span><br><span class="line">	&lt;!--</span><br><span class="line">		dicPath 参数 － 设置自定义的扩展词库，支持相对路径(相对于 solr_home)</span><br><span class="line">		mode 参数 － 分词模式</span><br><span class="line">	--&gt;</span><br><span class="line">       &lt;tokenizer class=&quot;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&quot; mode=&quot;complex&quot; dicPath=&quot;dic&quot;/&gt;</span><br><span class="line">     &lt;/analyzer&gt;</span><br><span class="line">   &lt;/fieldtype&gt;</span><br><span class="line">   &lt;fieldtype name=&quot;textMaxWord&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot;&gt;</span><br><span class="line">     &lt;analyzer&gt;</span><br><span class="line">       &lt;tokenizer class=&quot;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&quot; mode=&quot;max-word&quot; /&gt;</span><br><span class="line">     &lt;/analyzer&gt;</span><br><span class="line">   &lt;/fieldtype&gt;</span><br><span class="line">   &lt;fieldtype name=&quot;textSimple&quot; class=&quot;solr.TextField&quot; positionIncrementGap=&quot;100&quot;&gt;</span><br><span class="line">     &lt;analyzer&gt;</span><br><span class="line">       &lt;tokenizer class=&quot;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&quot; mode=&quot;simple&quot; dicPath=&quot;dic&quot; /&gt;</span><br><span class="line">     &lt;/analyzer&gt;</span><br><span class="line">   &lt;/fieldtype&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>自定义扩展词,名字必须为<strong>wordsXXX.dic</strong></p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;tokenizer class=&quot;com.chenlb.mmseg4j.solr.MMSegTokenizerFactory&quot; mode=&quot;simple&quot; dicPath=&quot;F:\solr\apache-tomcat-8.5.15\webapps\solr\WEB-INF\classes\dic&quot; /&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启tomcat</p>
-</li>
-<li>测试中文分词<br> <img src="3.jpg" alt=""></li>
-</ol>
-</li>
-<li>smartcn中文分词（同理）</li>
-</ul>
-<h2 id="6-使用solr的dataimport导入数据库数据"><a href="#6-使用solr的dataimport导入数据库数据" class="headerlink" title="6. 使用solr的dataimport导入数据库数据"></a>6. 使用solr的dataimport导入数据库数据</h2><ul>
-<li><p>full-import（全部导入）</p>
-<ol>
-<li>首先找到solr-5.5.0\dist\solr-dataimporthandler-5.5.0.jar、solr-dataimporthandler-extras-5.5.0.jar，把这个文件复制到tomcat\webapps\solr\WEB-INF/lib/下，并且找到相应数据库的驱动包，也同样放到该目录。这里用的是mysql的驱动包</li>
-<li>将solr-5.5.0\example\example-DIH\solr\db\conf\db-data-config.xml复制到复制到solr-home/baizhi/conf/下，并改名为data-config.xml</li>
-<li><p>修改tomcat\solr-home\baizhi\conf\solrconfig.xml,添加内容</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--配置数据库导入--&gt;</span><br><span class="line"> 	&lt;requestHandler name=&quot;/dataimport&quot; class=&quot;solr.DataImportHandler&quot;&gt;</span><br><span class="line">    &lt;lst name=&quot;defaults&quot;&gt;</span><br><span class="line">      &lt;str name=&quot;config&quot;&gt;data-config.xml&lt;/str&gt;</span><br><span class="line">    &lt;/lst&gt;</span><br><span class="line"> 	&lt;/requestHandler&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>打开并编辑data-config.xml</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;dataConfig&gt;</span><br><span class="line">	&lt;!-- 这是mysql的配置，学会jdbc的都应该看得懂 --&gt;</span><br><span class="line">    &lt;dataSource driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://localhost:3306/lucene&quot; user=&quot;root&quot; password=&quot;root&quot; /&gt;</span><br><span class="line">    &lt;document&gt;</span><br><span class="line">		&lt;!-- name属性，就代表着一个文档，可以随便命名 --&gt;</span><br><span class="line">      		&lt;!-- query是一条sql，代表在数据库查找出来的数据 --&gt;</span><br><span class="line">        &lt;entity name=&quot;user&quot; query=&quot;select * from t_user&quot;&gt;</span><br><span class="line">		    &lt;!-- 每一个field映射着数据库中列与文档中的域，column是数据库列，name是solr的域(必须是在managed-schema文件中配置过的域才行) --&gt;</span><br><span class="line">            &lt;field column=&quot;id&quot; name=&quot;id&quot; /&gt;</span><br><span class="line">            &lt;field column=&quot;name&quot; name=&quot;mmseg4j_name&quot;/&gt;</span><br><span class="line">            &lt;field column=&quot;last_update_time&quot; name=&quot;last_update_time_dt&quot;/&gt;</span><br><span class="line">        &lt;/entity&gt;</span><br><span class="line">    &lt;/document&gt;</span><br><span class="line">&lt;/dataConfig&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>重启tomcat</p>
-</li>
-<li>测试<br> <img src="5.jpg" alt=""></li>
-</ol>
-</li>
-<li><p>delta-import（增量导入）</p>
-<blockquote>
-<p>全量导入在数据量大的时候代价非常大，一般来说都会使用增量的方式来导入数据（将最新的数据进行导入）</p>
-</blockquote>
-<ol>
-<li><p>修改配置文件data-config.xml</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">&lt;dataConfig&gt;</span><br><span class="line">    &lt;dataSource driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://localhost:3306/lucene&quot; user=&quot;root&quot; password=&quot;root&quot; /&gt;</span><br><span class="line">    &lt;document&gt;</span><br><span class="line">        &lt;entity name=&quot;user&quot;</span><br><span class="line">                query=&quot;select * from t_user&quot;</span><br><span class="line">				&lt;!--查询增量数据id--&gt;</span><br><span class="line">                deltaQuery=&quot;select id from t_user where last_update_time &amp;gt; &apos;$&#123;dataimporter.last_index_time&#125;&apos;&quot;</span><br><span class="line">				&lt;!--根据增量数据id，查询增量数据信息--&gt;</span><br><span class="line">                deltaImportQuery=&quot;select * from t_user where id = &apos;$&#123;dataimporter.delta.id&#125;&apos;&quot;</span><br><span class="line">            &gt;</span><br><span class="line">            </span><br><span class="line">            &lt;field column=&quot;id&quot; name=&quot;id&quot; /&gt;</span><br><span class="line">            &lt;field column=&quot;name&quot; name=&quot;mmseg4j_name&quot;/&gt;</span><br><span class="line">            &lt;field column=&quot;last_update_time&quot; name=&quot;last_update_time_dt&quot;/&gt;</span><br><span class="line">        &lt;/entity&gt;</span><br><span class="line">    &lt;/document&gt;</span><br><span class="line">&lt;/dataConfig&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>注意：</p>
-<ol>
-<li>deltaImportQuery与deltaQuery, deltaImportQuery使用deltaQuery返回的文章id作为查询条件，然后进行增量导入。</li>
-<li>dataimporter.last_index_time  ：存储在文件import.properties 中</li>
-<li>dataimporter.delta.id：deltaImportQuery 返回的id</li>
-</ol>
-</blockquote>
-</li>
-<li>重启tomcat</li>
-<li>测试<br> <img src="6.jpg" alt="">    </li>
-</ol>
-</li>
-<li><p>复杂导入</p>
-<ol>
-<li>一对多导入（列：唐代诗人和其诗作,一对多关系）</li>
-<li><p>数据库表如下</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE `poets` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,</span><br><span class="line">  `created_at` datetime DEFAULT NULL,</span><br><span class="line">  `updated_at` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=2529 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;</span><br><span class="line">	</span><br><span class="line">CREATE TABLE `poetries` (</span><br><span class="line">  `id` int(11) NOT NULL AUTO_INCREMENT,</span><br><span class="line">  `poet_id` int(11) DEFAULT NULL,</span><br><span class="line">  `content` text COLLATE utf8_unicode_ci,</span><br><span class="line">  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,</span><br><span class="line">  `created_at` datetime DEFAULT NULL,</span><br><span class="line">  `updated_at` datetime DEFAULT NULL,</span><br><span class="line">  PRIMARY KEY (`id`)</span><br><span class="line">) ENGINE=InnoDB AUTO_INCREMENT=13220 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>solr配置如下<br> data-config.xml</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&lt;dataConfig&gt;</span><br><span class="line">    &lt;dataSource driver=&quot;com.mysql.jdbc.Driver&quot; url=&quot;jdbc:mysql://localhost:3306/lucene&quot; user=&quot;root&quot; password=&quot;root&quot; /&gt;</span><br><span class="line">    &lt;document&gt;</span><br><span class="line">        &lt;entity name=&quot;poetries&quot; </span><br><span class="line">                query=&quot;select * from poetries&quot;</span><br><span class="line">                deltaQuery=&quot;select id from poetries where updated_at &amp;gt; &apos;$&#123;dataimporter.last_index_time&#125;&apos;&quot;</span><br><span class="line">                deltaImportQuery=&quot;select * from poetries where id = &apos;$&#123;dataimporter.delta.id&#125;&apos;&quot;</span><br><span class="line">         &gt;</span><br><span class="line">            &lt;field column=&quot;id&quot; name=&quot;id&quot;/&gt;</span><br><span class="line">            &lt;field column=&quot;content&quot; name=&quot;poetries_content&quot;/&gt;</span><br><span class="line">            &lt;field column=&quot;title&quot; name=&quot;poetries_title&quot;/&gt;</span><br><span class="line">            &lt;field column=&quot;created_at&quot; name=&quot;poetries_created_at&quot;/&gt;</span><br><span class="line">            &lt;field column=&quot;updated_at&quot; name=&quot;poetries_updated_at&quot;/&gt;</span><br><span class="line">            </span><br><span class="line">            &lt;entity name=&quot;poet&quot;</span><br><span class="line">                query=&quot;select * from poets where id=$&#123;poetries.poet_id&#125;&quot; </span><br><span class="line">                deltaQuery=&quot;select id from poets where updated_at &amp;gt; &apos;$&#123;dataimporter.last_index_time&#125;&apos;&quot;</span><br><span class="line">                deltaImportQuery=&quot;select * from poets where id = &apos;$&#123;dataimporter.delta.id&#125;&apos;&quot;</span><br><span class="line">            &gt;</span><br><span class="line">            </span><br><span class="line">                &lt;field column=&quot;id&quot; name=&quot;poet_id&quot; /&gt;</span><br><span class="line">                &lt;field column=&quot;name&quot; name=&quot;poet_name&quot;/&gt;</span><br><span class="line">                &lt;field column=&quot;created_at&quot; name=&quot;poet_created_at&quot;/&gt;</span><br><span class="line">                &lt;field column=&quot;updated_at&quot; name=&quot;poet_updated_at&quot;/&gt;</span><br><span class="line">            &lt;/entity&gt;</span><br><span class="line">        </span><br><span class="line">         &lt;/entity&gt;</span><br><span class="line">    &lt;/document&gt;</span><br><span class="line">&lt;/dataConfig&gt;</span><br></pre></td></tr></table></figure>
-<p> managed-schema</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--诗人--&gt;</span><br><span class="line">&lt;field name=&quot;poet_id&quot; type=&quot;string&quot; indexed=&quot;true&quot; stored=&quot;true&quot; multiValued=&quot;false&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poet_name&quot; type=&quot;textComplex&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poet_created_at&quot; type=&quot;date&quot; indexed=&quot;true&quot; stored=&quot;false&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poet_updated_at&quot; type=&quot;date&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!--诗集--&gt;</span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poetries_content&quot; type=&quot;textComplex&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt; </span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poetries_title&quot; type=&quot;textComplex&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poetries_created_at&quot; type=&quot;date&quot; indexed=&quot;true&quot; stored=&quot;false&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;field name=&quot;poetries_updated_at&quot; type=&quot;date&quot; indexed=&quot;true&quot; stored=&quot;true&quot;/&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>导入数据<br> <img src="7.jpg" alt=""></p>
-</li>
-<li>测试<br> <img src="8.jpg" alt=""></li>
-</ol>
-</li>
-</ul>
-<h2 id="7-查询参数"><a href="#7-查询参数" class="headerlink" title="7. 查询参数"></a>7. 查询参数</h2><ul>
-<li>常用查询参数<ol>
-<li>q - 查询字符串，如果查询所有*:* (id:1)</li>
-<li>fq - (filter query)使用Filter Query可以充分利用FilterQuery Cache，提高检索性能。作用：在q查询符合结果中同时是fq查询符合的，例如：q=mm&amp;fq=date_time:[20081001TO 20091031]，找关键字mm，并且date_time是20081001到20091031之间的。（fq查询字段后面的冒号和关键字必须有）</li>
-<li>sort - 排序，格式：sort=<field name="">+<desc|asc>[,<field name="">+<desc|asc>]… 。示例：（score desc, price asc）表示先 “score” 降序, 再 “price” 升序，默认是相关性降序</desc|asc></field></desc|asc></field></li>
-<li>start - 用于分页定义结果起始记录数，默认为0，从第1条记录开始。</li>
-<li>rows - 用于分页定义结果每页返回记录数，默认为10。</li>
-<li>fl - field list，指定返回结果字段。以空格“ ”或逗号“,”分隔。</li>
-<li>df - 默认的查询字段，一般默认指定。</li>
-<li>wt - writer type。指定查询输出结构格式，输出格式：xml、json、Python、ruby、PHP、phps、custom</li>
-<li>indent - 返回的结果是否缩进，默认关闭，用indent=true|on 开启，一般调试json,php,phps,ruby输出才有必要用这个参数。</li>
-<li>debugQuery - 设置返回结果是否显示Debug信息</li>
-<li>q.op - 表示q中查询语句的各条件的逻辑操作 AND(与)OR(或)</li>
-<li>hl - 是否高亮 ,如hl=true</li>
-<li>hl.fl - 高亮field ,hl.fl=Name,SKU</li>
-<li>hl.snippets - 默认是1,这里设置为3个片段</li>
-<li>hl.simple.pre - 高亮前面的格式</li>
-<li>hl.simple.post - 高亮后面的格式</li>
-<li>facet - 是否启动统计</li>
-<li>facet.field - 统计field</li>
-</ol>
-</li>
-<li>常用查询语法<ol>
-<li>“:” 指定字段查指定值，如返回所有值<em>:</em></li>
-<li>“?” 表示单个任意字符的通配</li>
-<li>“*” 表示多个任意字符的通配（不能在检索的项开始使用*或者?符号）</li>
-<li>“~” 表示模糊检索，如检索拼写类似于”roam”的项这样写：roam~将找到形如foam和roams的单词；roam~0.8，检索返回相似度在0.8以上的记录。</li>
-<li>邻近检索，如检索相隔10个单词的”apache”和”jakarta”，”jakarta apache”~10</li>
-<li>“^” 控制相关度检索，如检索jakarta apache，同时希望去让”jakarta”的相关度更加好，那么在其后加上”^”符号和增量值，即jakarta^4 apache</li>
-<li>布尔操作符AND、&amp;&amp;</li>
-<li>布尔操作符OR、||</li>
-<li>布尔操作符NOT、!、- （排除操作符不能单独与项使用构成查询）</li>
-<li>“+” 存在操作符，要求符号”+”后的项必须在文档相应的域中存在</li>
-<li>( ) 用于构成子查询</li>
-<li>[] 包含范围检索，如检索某时间段记录，包含头尾，date:[200707 TO 200710]</li>
-</ol>
-</li>
-</ul>
-<h2 id="8-SolrJ的使用"><a href="#8-SolrJ的使用" class="headerlink" title="8. SolrJ的使用"></a>8. SolrJ的使用</h2><ul>
-<li><p>引入MAVEN的依赖，solrj的版本号要对应solr的版本号</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- https://mvnrepository.com/artifact/org.apache.solr/solr-solrj --&gt;</span><br><span class="line">   &lt;dependency&gt;</span><br><span class="line">       &lt;groupId&gt;org.apache.solr&lt;/groupId&gt;</span><br><span class="line">       &lt;artifactId&gt;solr-solrj&lt;/artifactId&gt;</span><br><span class="line">       &lt;version&gt;5.5.0&lt;/version&gt;</span><br><span class="line">   &lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>新增和修改索引</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">private static String serverUrl = &quot;http://localhost:8080/solr/baizhi&quot;;</span><br><span class="line"></span><br><span class="line">   /**</span><br><span class="line">    * 新增和修改索引</span><br><span class="line">    *   修改索引同理：索引存在修改，不存在新增</span><br><span class="line">    */</span><br><span class="line">   @Test</span><br><span class="line">   public void addOrUpdateIndex() &#123;</span><br><span class="line"></span><br><span class="line">       try &#123;</span><br><span class="line">           SolrClient solrClient = new HttpSolrClient(serverUrl);</span><br><span class="line"></span><br><span class="line">           /*</span><br><span class="line">           SolrInputDocument solrInputDocument = new SolrInputDocument();</span><br><span class="line"></span><br><span class="line">           solrInputDocument.addField(&quot;id&quot;,&quot;1&quot;);</span><br><span class="line">           solrInputDocument.addField(&quot;poetries_title&quot;,&quot;李白&quot;);</span><br><span class="line"></span><br><span class="line">           solrClient.add(solrInputDocument);</span><br><span class="line">           */</span><br><span class="line"></span><br><span class="line">           ArrayList&lt;Poetry&gt; poetries = new ArrayList&lt;Poetry&gt;();</span><br><span class="line">           for (int i = 0; i &lt; 10; i++) &#123;</span><br><span class="line">               Poetry poetry = new Poetry(i+1,&quot;上课头疼的故事&quot;,&quot;头好痛&quot;,new Date(),new Date());</span><br><span class="line">               poetries.add(poetry);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           // 注意：bean需要使用@Field注解,绑定属性和其索引域Field</span><br><span class="line">           solrClient.addBeans(poetries);</span><br><span class="line"></span><br><span class="line">           solrClient.commit();</span><br><span class="line">           solrClient.close();</span><br><span class="line">       &#125; catch (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>删除索引</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 删除索引</span><br><span class="line">    */</span><br><span class="line">   @Test</span><br><span class="line">   public void deleteAllIndex()&#123;</span><br><span class="line">       try &#123;</span><br><span class="line">           SolrClient solrClient = new HttpSolrClient(serverUrl);</span><br><span class="line">           //1. 删除一个</span><br><span class="line">           //solrClient.deleteById(&quot;1&quot;);</span><br><span class="line"></span><br><span class="line">           //2. 删除多个</span><br><span class="line">           solrClient.deleteById(Arrays.asList(&quot;1&quot;,&quot;2&quot;));</span><br><span class="line"></span><br><span class="line">           //3. 根据查询条件删除</span><br><span class="line">           solrClient.deleteByQuery(&quot;id:10&quot;);</span><br><span class="line"></span><br><span class="line">           //4. 删除所有索引</span><br><span class="line">           //solrClient.deleteByQuery(&quot;*:*&quot;);</span><br><span class="line">           solrClient.commit();</span><br><span class="line">           solrClient.close();</span><br><span class="line">       &#125; catch (Exception e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>查询索引</p>
-  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">    * 查询索引</span><br><span class="line">    */</span><br><span class="line">   @Test</span><br><span class="line">   public void searchIndex()&#123;</span><br><span class="line">       try &#123;</span><br><span class="line">           HttpSolrClient httpSolrClient = new HttpSolrClient(serverUrl);</span><br><span class="line">           /*</span><br><span class="line">           SolrDocument solrDocument = httpSolrClient.getById(&quot;3&quot;);</span><br><span class="line"></span><br><span class="line">           Object poetries_title = solrDocument.get(&quot;poetries_title&quot;);</span><br><span class="line"></span><br><span class="line">           System.out.println(poetries_title);</span><br><span class="line">           */</span><br><span class="line">           // 设置查询参数</span><br><span class="line">           SolrQuery solrQuery = new SolrQuery();</span><br><span class="line">           solrQuery.set(&quot;q&quot;,&quot;poetries_content:上课&quot;);</span><br><span class="line">           solrQuery.set(&quot;start &quot;,0);</span><br><span class="line">           solrQuery.set(&quot;rows&quot;,20);</span><br><span class="line"></span><br><span class="line">           // 过滤查询 id范围在3到6之间</span><br><span class="line">           solrQuery.set(&quot;fq&quot;,&quot;id:[3 TO 6]&quot;);</span><br><span class="line">           // 查询结果 根据id倒序排列 多个排序条件用逗号隔开</span><br><span class="line">           solrQuery.set(&quot;sort&quot;,&quot;id desc&quot;);</span><br><span class="line"></span><br><span class="line">           // 默认搜索域</span><br><span class="line">           solrQuery.set(&quot;df&quot;,&quot;poetries_title&quot;);</span><br><span class="line"></span><br><span class="line">           // 设置高亮</span><br><span class="line">           solrQuery.setHighlight(true);</span><br><span class="line">           // 设置高亮域</span><br><span class="line">           solrQuery.addHighlightField(&quot;poetries_title&quot;);</span><br><span class="line">           solrQuery.addHighlightField(&quot;poetries_content&quot;);</span><br><span class="line"></span><br><span class="line">           solrQuery.setHighlightSimplePre(&quot;&lt;font style=&apos;color:red&apos;&gt;&quot;);</span><br><span class="line">           solrQuery.setHighlightSimplePost(&quot;&lt;/font&gt;&quot;);</span><br><span class="line"></span><br><span class="line">           // 查询</span><br><span class="line">           QueryResponse queryResponse = httpSolrClient.query(solrQuery);</span><br><span class="line"></span><br><span class="line">           // 获取查询结果</span><br><span class="line">           SolrDocumentList results = queryResponse.getResults();</span><br><span class="line"></span><br><span class="line">           System.out.println(&quot;查询出来的结果数：&quot;+results.size());</span><br><span class="line">           System.out.println(&quot;共查询到记录：&quot;+results.getNumFound());</span><br><span class="line"></span><br><span class="line">           // 获取高亮结果</span><br><span class="line">           Map&lt;String, Map&lt;String, List&lt;String&gt;&gt;&gt; highlighting = queryResponse.getHighlighting();</span><br><span class="line"></span><br><span class="line">           // 处理高亮结果集</span><br><span class="line">           for (String s : highlighting.keySet()) &#123;</span><br><span class="line">               Map&lt;String, List&lt;String&gt;&gt; map = highlighting.get(s);</span><br><span class="line">               System.out.println(map);</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           // 处理普通结果集</span><br><span class="line">           for (SolrDocument result : results) &#123;</span><br><span class="line">               System.out.println(result.get(&quot;id&quot;)+&quot;  &quot;+result.get(&quot;poetries_title&quot;)+&quot; &quot;+result.get(&quot;poetries_content&quot;));</span><br><span class="line">           &#125;</span><br><span class="line"></span><br><span class="line">           httpSolrClient.close();</span><br><span class="line">       &#125; catch (SolrServerException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125; catch (IOException e) &#123;</span><br><span class="line">           e.printStackTrace();</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<blockquote>
-<p>SolrCloud未完待续</p>
-</blockquote>
+<h3 id="三、-MongoDB中概念解析"><a href="#三、-MongoDB中概念解析" class="headerlink" title="三、 MongoDB中概念解析"></a>三、 MongoDB中概念解析</h3><table>
+<thead>
+<tr>
+<th>SQL术语</th>
+<th>MongoDB术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td>database</td>
+<td>数据库</td>
+</tr>
+<tr>
+<td>table</td>
+<td>collection</td>
+<td>集合</td>
+</tr>
+<tr>
+<td>row</td>
+<td>document</td>
+<td>文档，一条记录</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index</td>
+<td>索引</td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>primary key</td>
+<td>主键,MongoDB自动将_id字段设置为主键</td>
+</tr>
+<tr>
+<td>foreign key</td>
+<td>无</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
 
       
 
@@ -454,11 +270,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">全文检索</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NOSQL</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">引擎</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
@@ -525,7 +341,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.gaozhy.cn/2018/01/07/Solr轻松入门/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.gaozhy.cn/2018/01/10/MongoDB概述/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -539,18 +355,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2018/01/10/MongoDB概述/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/01/11/FastDFS概述/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          MongoDB概述 (一)
+          FastDFS概述 (一)
         
       </div>
     </a>
   
   
-    <a href="/2018/01/07/Spring-Boot轻松入门/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Spring Boot轻松入门</div>
+    <a href="/2018/01/07/Solr轻松入门/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Solr轻松入门</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -589,7 +405,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://www.gaozhy.cn/2018/01/07/Solr轻松入门/",
+  id: "http://www.gaozhy.cn/2018/01/10/MongoDB概述/",
   owner: 'gaozhy-baizhi',
   repo: 'bolg_gitment',
   oauth: {
