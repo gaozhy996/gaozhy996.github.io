@@ -6,15 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.gaozhy.cn">
-  <title>Archives: 2018 | 高志逺的博客</title>
+  <title>MongoDB概述 (一) | 高志逺的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="高志逺的博客">
-<meta property="og:url" content="http://www.gaozhy.cn/archives/2018/index.html">
+  <meta name="description" content="一、简介MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 NOSQL优点：高可用、可扩展、低成本、数据结构灵活 NOSQL缺点：弱化事务">
+<meta name="keywords" content="NOSQL,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MongoDB概述 (一)">
+<meta property="og:url" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/index.html">
 <meta property="og:site_name" content="高志逺的博客">
+<meta property="og:description" content="一、简介MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 NOSQL优点：高可用、可扩展、低成本、数据结构灵活 NOSQL缺点：弱化事务">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/logo.jpg">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/00.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/0.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/1.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/3.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/4.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/5.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/6.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/7.png">
+<meta property="og:updated_time" content="2018-01-16T09:01:42.064Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高志逺的博客">
+<meta name="twitter:title" content="MongoDB概述 (一)">
+<meta name="twitter:description" content="一、简介MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。 Note:  NOSQL(not only sql)：指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。 NOSQL优点：高可用、可扩展、低成本、数据结构灵活 NOSQL缺点：弱化事务">
+<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB概述/logo.jpg">
   
     <link rel="alternative" href="/atom.xml" title="高志逺的博客" type="application/atom+xml">
   
@@ -140,36 +155,142 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-MongoDB概述" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/16/MongoDB概述/" class="archive-article-date">
-  	<time datetime="2018-01-16T09:25:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/16/MongoDB概述/">MongoDB概述 (一)</a>
+    <h1 class="article-title" itemprop="name">
+      MongoDB概述 (一)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/16/MongoDB概述/" class="archive-article-date">
+  	<time datetime="2018-01-16T09:25:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="/2018/01/16/MongoDB概述/logo.jpg" title="图片">
+<h3 id="一、简介"><a href="#一、简介" class="headerlink" title="一、简介"></a>一、简介</h3><h5 id="MongoDB-是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。"><a href="#MongoDB-是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。" class="headerlink" title="MongoDB 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。"></a><em><a href="https://www.mongodb.com/what-is-mongodb" target="_blank" rel="noopener">MongoDB</a></em> 是一款免费开源的NOSQL文档型数据库，旨在为WEB应用提供可护展的高性能数据存储解决方案。</h5><blockquote>
+<p><strong>Note:</strong></p>
+<ol>
+<li><em>NOSQL(not only sql)：</em>指的是非关系型数据库,没有固定的存储格式，一般适用于超大规模数据的存储。</li>
+<li><em>NOSQL</em>优点：高可用、可扩展、低成本、数据结构灵活</li>
+<li><em>NOSQL</em>缺点：弱化事务</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+<h3 id="二、-特点"><a href="#二、-特点" class="headerlink" title="二、 特点"></a>二、 特点</h3><ol>
+<li>数据存储格式为 <em>BSON</em>（一种二进制形式的存储格式，类似于 <em>JSON</em>）<br><img src="00.png" alt=""></li>
+<li>丰富的查询语言（CRUD、数据聚合、全文检索、地理位置查询）</li>
+<li>高可用（副本集）</li>
+<li>水平扩展,支持海量数据存储（分片）</li>
+<li>MongoDB支持各种编程语言:RUBY，PYTHON，JAVA，C++，PHP，C#等多种语言。</li>
+<li>支持完全索引</li>
+</ol>
+<h3 id="三、-MongoDB中概念解析"><a href="#三、-MongoDB中概念解析" class="headerlink" title="三、 MongoDB中概念解析"></a>三、 MongoDB中概念解析</h3><table>
+<thead>
+<tr>
+<th>SQL术语</th>
+<th>MongoDB术语</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>database</td>
+<td>database</td>
+<td>数据库</td>
+</tr>
+<tr>
+<td>table</td>
+<td>collection</td>
+<td>集合</td>
+</tr>
+<tr>
+<td>row</td>
+<td>document</td>
+<td>文档，一条记录</td>
+</tr>
+<tr>
+<td>index</td>
+<td>index</td>
+<td>索引</td>
+</tr>
+<tr>
+<td>primary key</td>
+<td>primary key</td>
+<td>主键,MongoDB自动将_id字段设置为主键</td>
+</tr>
+<tr>
+<td>foreign key</td>
+<td>无</td>
+<td>无</td>
+</tr>
+</tbody>
+</table>
+<h3 id="四、环境搭建（注：最新版本3-6-只能在64位系统安装）"><a href="#四、环境搭建（注：最新版本3-6-只能在64位系统安装）" class="headerlink" title="四、环境搭建（注：最新版本3.6,只能在64位系统安装）"></a>四、环境搭建（注：最新版本3.6,只能在64位系统安装）</h3><ol>
+<li><p>安装  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wget https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.6.2.tgz</span><br><span class="line">tar -zxvf mongodb-linux-x86_64-3.6.2.tgz</span><br><span class="line">mv mongodb-linux-x86_64-3.6.2 mongodb</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>启动mongodb服务<br><img src="0.png" alt=""></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 启动mongo server命令</span><br><span class="line">./mongod --port 27017 --dbpath=/data/db</span><br></pre></td></tr></table></figure>
+<p># 启动成功，如下图所示：<br><img src="1.png" alt=""></p>
+</li>
+</ol>
+<h3 id="五、MongoDB的客户端基本操作"><a href="#五、MongoDB的客户端基本操作" class="headerlink" title="五、MongoDB的客户端基本操作"></a>五、MongoDB的客户端基本操作</h3><ol>
+<li><p>打开客户端交互窗口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/root/mongodb/bin/mongo 192.168.138.156:27017</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注：<br>a. mongodb 客户端是一个javascript交互窗口，可以直接写js代码<br>b. mongodb和mysql数据库有点类似，有数据库的概念，在使用时需要先选中数据库，再执行操作</p>
+</blockquote>
+</li>
+<li>数据库相关操作<br><code>show dbs</code> 展示所有数据库<br><img src="3.png" alt=""><br><code>db</code> 展示当前使用的数据库<br><img src="4.png" alt=""><br><code>use 数据库名</code> 切换到指定数据库<br><img src="5.png" alt=""><br><code>db.dropDatabase();</code> 删除数据库<br><img src="6.png" alt=""><br><code>db.help();</code> 帮助命令<br><img src="7.png" alt=""></li>
+</ol>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weichat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -185,7 +306,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -198,323 +319,120 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.gaozhy.cn/2018/01/16/MongoDB概述/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/FastDFS概述/" class="archive-article-date">
-  	<time datetime="2018-01-11T00:12:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/11/FastDFS概述/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">FastDFS概述 (一)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/FastDFS概述/">FastDFS概述 (一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/07/Solr轻松入门/" class="archive-article-date">
-  	<time datetime="2018-01-07T03:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/07/Solr轻松入门/">Solr轻松入门</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">全文检索</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">引擎</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/07/Spring-Boot轻松入门/" class="archive-article-date">
-  	<time datetime="2018-01-07T03:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/07/Spring-Boot轻松入门/">Spring Boot轻松入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/07/收集的一些图片/" class="archive-article-date">
-  	<time datetime="2018-01-07T02:56:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/07/收集的一些图片/">收集的一些图片</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">诗和远方</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂记//" class="article-tag-list-link color3">杂记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/07/拍的一些照片/" class="archive-article-date">
-  	<time datetime="2018-01-07T02:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/07/拍的一些照片/">拍的一些照片</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">诗和远方</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂记//" class="article-tag-list-link color3">杂记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/07/致橡树/" class="archive-article-date">
-  	<time datetime="2018-01-07T01:54:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/07/致橡树/">致橡树</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">诗和远方</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂记//" class="article-tag-list-link color3">杂记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://www.gaozhy.cn/2018/01/16/MongoDB概述/",
+  owner: 'gaozhy-baizhi',
+  repo: 'gaozhy-baizhi.github.io',
+  oauth: {
+    client_id: 'f32bb0a5501e40409b3b',
+    client_secret: '4167e05bbad4e7f7b15773901eae5ba83852ed45',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -541,8 +459,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
