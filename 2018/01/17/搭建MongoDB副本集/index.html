@@ -19,7 +19,15 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset0.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset1.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset2.png">
-<meta property="og:updated_time" content="2018-01-17T10:13:56.277Z">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset3.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset4.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset5.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset6.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset7.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset9.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset2.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset10.png">
+<meta property="og:updated_time" content="2018-01-17T17:13:51.348Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建MongoDB副本集 (四)">
 <meta name="twitter:description" content="原文：A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all production deployments. 译文">
@@ -174,10 +182,27 @@
 <li>译文：副本集是一组mongod进程，它维护了同样的数据集。副本集提供了信息冗余和高可用，是所有生产的基础</li>
 </ul>
 <footer><strong>Mongo官网——</strong><cite><a href="https://docs.mongodb.com/manual/replication/" target="_blank" rel="noopener">Replication</a></cite></footer></blockquote>
-<img src="/2018/01/17/搭建MongoDB副本集/replset0.png" title="副本集"><br><br><a id="more"></a>
+<img src="/2018/01/17/搭建MongoDB副本集/replset0.png" width="500" title="410副本集"><br><br><a id="more"></a>
 <h4 id="一、-节点"><a href="#一、-节点" class="headerlink" title="一、 节点"></a>一、 节点</h4><h5 id="1-Primary-Node-主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。"><a href="#1-Primary-Node-主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。" class="headerlink" title="1. Primary Node 主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。"></a>1. <code>Primary Node</code> 主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。</h5><p><img src="replset1.png" alt="replset1">  </p>
 <h5 id="2-Secondary-Node-副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。"><a href="#2-Secondary-Node-副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。" class="headerlink" title="2. Secondary Node 副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。"></a>2. <code>Secondary Node</code> 副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。</h5><p><img src="replset2.png" alt="replset2"> </p>
-
+<h4 id="二-搭建步骤"><a href="#二-搭建步骤" class="headerlink" title="二. 搭建步骤"></a>二. 搭建步骤</h4><h5 id="1-准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo-Server）"><a href="#1-准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo-Server）" class="headerlink" title="1. 准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo Server）"></a>1. 准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo Server）</h5><pre><code><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Node1: 192.168.128.156 28000</span><br><span class="line">Node2: 192.168.128.156 28001</span><br><span class="line">Node3: 192.168.128.156 28002</span><br></pre></td></tr></table></figure>
+</code></pre><h5 id="2-准备数据存放目录"><a href="#2-准备数据存放目录" class="headerlink" title="2. 准备数据存放目录"></a>2. 准备数据存放目录</h5>  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p /data/node1</span><br><span class="line">mkdir -p /data/node2</span><br><span class="line">mkdir -p /data/node3</span><br></pre></td></tr></table></figure>
+<h5 id="3-分别启动三台服务器"><a href="#3-分别启动三台服务器" class="headerlink" title="3. 分别启动三台服务器"></a>3. 分别启动三台服务器</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"># 启动主服务器</span><br><span class="line">mongodb/bin/mongod --port 28000 --dbpath=/data/node1/ --bind_ip 192.168.128.156 --replSet rs</span><br><span class="line"></span><br><span class="line"># 分别启动两个副服务器</span><br><span class="line">mongodb/bin/mongod --port 28001 --dbpath=/data/node2/ --bind_ip 192.168.128.156 --replSet rs</span><br><span class="line">mongodb/bin/mongod --port 28002 --dbpath=/data/node3/ --bind_ip 192.168.128.156 --replSet rs</span><br></pre></td></tr></table></figure>
+<p>  <img src="replset3.png" alt="replset3"> </p>
+<h5 id="4-初始化副本集（使用客户端连接任意Mongo-Server）"><a href="#4-初始化副本集（使用客户端连接任意Mongo-Server）" class="headerlink" title="4. 初始化副本集（使用客户端连接任意Mongo Server）"></a>4. 初始化副本集（使用客户端连接任意Mongo Server）</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"># 连接Mongo Server</span><br><span class="line">/root/mongodb/bin/mongo 192.168.128.156:28000</span><br><span class="line"></span><br><span class="line"># 初始化副本集（注意：_id的名字应该和启动参数 `--replSet` value一致）</span><br><span class="line">rs.initiate( &#123;</span><br><span class="line">   _id : &quot;rs&quot;,</span><br><span class="line">   members: [</span><br><span class="line">      &#123; _id: 0, host: &quot;192.168.128.156:28000&quot; &#125;,</span><br><span class="line">      &#123; _id: 1, host: &quot;192.168.128.156:28001&quot; &#125;,</span><br><span class="line">      &#123; _id: 2, host: &quot;192.168.128.156:28002&quot; &#125;</span><br><span class="line">   ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>  <img src="replset4.png" alt="replset4"> </p>
+<h5 id="5-查看副本集状态"><a href="#5-查看副本集状态" class="headerlink" title="5. 查看副本集状态"></a>5. 查看副本集状态</h5><p>  <code>rs.status();</code>  </p>
+<p>  <img src="replset5.png" alt="replset5"> </p>
+<h5 id="6-测试副本集数据同步"><a href="#6-测试副本集数据同步" class="headerlink" title="6. 测试副本集数据同步"></a>6. 测试副本集数据同步</h5>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># 亲们，我们先往主节点插入一条数据</span><br></pre></td></tr></table></figure>
+<p>  <img src="replset6.png" alt="replset6"> </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 好了，我们再连接副节点，执行查看命令</span><br><span class="line">/root/mongodb/bin/mongo 192.168.128.156:28001</span><br></pre></td></tr></table></figure>
+<p>  <img src="replset7.png" alt="replset7"> </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 咦，为什么出现错误了呢？ </span><br><span class="line"># 原因是因为副本集中默认使用主节点读写数据，副节点只做数据备份，不参与读操作。</span><br><span class="line"># 哎呦！原来如此</span><br><span class="line"># 那如何解决这个问题呢？</span><br><span class="line"># 好了不卖关子了</span><br><span class="line"># 在客户端执行命令 db.getMongo().setSlaveOk();</span><br><span class="line"># 再试试看，是不是OK了！看到同步过来的数据没？ 啦啦啦~~</span><br></pre></td></tr></table></figure>
+<p>  <img src="replset9.png" alt="replset8"> </p>
+<h5 id="7-测试集群容错"><a href="#7-测试集群容错" class="headerlink" title="7. 测试集群容错"></a>7. 测试集群容错</h5><p>  <img src="replset2.png" alt="replset2"> </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 副本集其余的小伙伴，要选举新的Leader啦，原谅我再次引用这张图</span><br><span class="line"># 说干就干</span><br><span class="line"># 关闭端口28000的服务</span><br><span class="line"># 结果如图，是不是很神奇？</span><br></pre></td></tr></table></figure>
+<p>  <img src="replset10.png" alt="replset10"> </p>
+  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 执行命令rs.status()</span><br><span class="line"># 发现关闭28000主节点端口后，28002端口的副节点经过选举之后变成了主节点，而28001端口的副节点变成了28002节点的副节点</span><br></pre></td></tr></table></figure>
       
 
       
@@ -446,19 +471,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
               </li>
              
               <li class="article-tag-list-item">
