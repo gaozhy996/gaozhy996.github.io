@@ -8,13 +8,11 @@
   <link rel="dns-prefetch" href="http://www.gaozhy.cn">
   <title>MongoDB常用操作命令 (二) | 高志逺的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一、插入操作1. 单个文档插入  db.COLLECTION_NAME.insert(document)    2. 批量文档插入  db.COLLECTION_NAME.insert([document,document1.....])      注：在高版本mongodb中又新增了 db.collection.insertOne()和db.collection.insertMany() 这两">
-<meta name="keywords" content="NOSQL,数据库">
+  <meta name="keywords" content="NOSQL,数据库">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MongoDB常用操作命令 (二)">
 <meta property="og:url" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/index.html">
 <meta property="og:site_name" content="高志逺的博客">
-<meta property="og:description" content="一、插入操作1. 单个文档插入  db.COLLECTION_NAME.insert(document)    2. 批量文档插入  db.COLLECTION_NAME.insert([document,document1.....])      注：在高版本mongodb中又新增了 db.collection.insertOne()和db.collection.insertMany() 这两">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/logo.jpg">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/8.png">
@@ -26,10 +24,9 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/update3.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/delete.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/delete1.png">
-<meta property="og:updated_time" content="2018-01-17T04:10:48.326Z">
+<meta property="og:updated_time" content="2018-01-17T04:16:21.311Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB常用操作命令 (二)">
-<meta name="twitter:description" content="一、插入操作1. 单个文档插入  db.COLLECTION_NAME.insert(document)    2. 批量文档插入  db.COLLECTION_NAME.insert([document,document1.....])      注：在高版本mongodb中又新增了 db.collection.insertOne()和db.collection.insertMany() 这两">
 <meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/logo.jpg">
   
     <link rel="alternative" href="/atom.xml" title="高志逺的博客" type="application/atom+xml">
@@ -177,10 +174,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <img src="/2018/01/16/MongoDB常用操作-CRUD/logo.jpg" title="图片">
+<a id="more"></a>
 <h3 id="一、插入操作"><a href="#一、插入操作" class="headerlink" title="一、插入操作"></a>一、插入操作</h3><h5 id="1-单个文档插入"><a href="#1-单个文档插入" class="headerlink" title="1. 单个文档插入"></a>1. 单个文档插入</h5><p>  <code>db.COLLECTION_NAME.insert(document)</code><br>  <img src="8.png" alt=""> </p>
 <h5 id="2-批量文档插入"><a href="#2-批量文档插入" class="headerlink" title="2. 批量文档插入"></a>2. 批量文档插入</h5><p>  <code>db.COLLECTION_NAME.insert([document,document1.....])</code><br>  <img src="9.png" alt="">  </p>
 <blockquote>
-<p>注：在高版本mongodb中又新增了 db.collection.insertOne()和db.collection.insertMany() 这两个方法，分别用来插入单个文档和多个文档<br><a id="more"></a></p>
+<p>注：在高版本mongodb中又新增了 db.collection.insertOne()和db.collection.insertMany() 这两个方法，分别用来插入单个文档和多个文档</p>
 </blockquote>
 <h3 id="二、查询操作"><a href="#二、查询操作" class="headerlink" title="二、查询操作"></a>二、查询操作</h3><h5 id="1-查集合中所有文档"><a href="#1-查集合中所有文档" class="headerlink" title="1. 查集合中所有文档"></a>1. 查集合中所有文档</h5><p>  <code>db.collection.find( {} )</code> 等同于SQL查询中的 <code>SELECT * FROM collection</code><br>  <img src="10.png" alt=""> </p>
 <h5 id="2-指定条件查询-lt-field1-gt-lt-value1-gt"><a href="#2-指定条件查询-lt-field1-gt-lt-value1-gt" class="headerlink" title="2. 指定条件查询 { &lt;field1&gt;: &lt;value1&gt;}"></a>2. 指定条件查询 <code>{ &lt;field1&gt;: &lt;value1&gt;}</code></h5><p>  例: <code>db.users.find({&quot;name&quot;:&quot;zs&quot;});</code> 类似于 <code>select * from t_user where name = &#39;zs&#39;</code></p>
@@ -496,19 +494,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">全文检索</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">引擎</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">全文检索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">引擎</a>
               </li>
              
               <li class="article-tag-list-item">
