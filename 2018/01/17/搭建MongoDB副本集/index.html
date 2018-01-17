@@ -24,10 +24,10 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset5.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset6.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset7.png">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset9.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset8.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset2.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset10.png">
-<meta property="og:updated_time" content="2018-01-17T17:13:51.348Z">
+<meta property="og:updated_time" content="2018-01-17T17:22:23.225Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建MongoDB副本集 (四)">
 <meta name="twitter:description" content="原文：A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all production deployments. 译文">
@@ -198,7 +198,7 @@
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 好了，我们再连接副节点，执行查看命令</span><br><span class="line">/root/mongodb/bin/mongo 192.168.128.156:28001</span><br></pre></td></tr></table></figure>
 <p>  <img src="replset7.png" alt="replset7"> </p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 咦，为什么出现错误了呢？ </span><br><span class="line"># 原因是因为副本集中默认使用主节点读写数据，副节点只做数据备份，不参与读操作。</span><br><span class="line"># 哎呦！原来如此</span><br><span class="line"># 那如何解决这个问题呢？</span><br><span class="line"># 好了不卖关子了</span><br><span class="line"># 在客户端执行命令 db.getMongo().setSlaveOk();</span><br><span class="line"># 再试试看，是不是OK了！看到同步过来的数据没？ 啦啦啦~~</span><br></pre></td></tr></table></figure>
-<p>  <img src="replset9.png" alt="replset8"> </p>
+<p>  <img src="replset8.png" alt="replset8"> </p>
 <h5 id="7-测试集群容错"><a href="#7-测试集群容错" class="headerlink" title="7. 测试集群容错"></a>7. 测试集群容错</h5><p>  <img src="replset2.png" alt="replset2"> </p>
   <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># 副本集其余的小伙伴，要选举新的Leader啦，原谅我再次引用这张图</span><br><span class="line"># 说干就干</span><br><span class="line"># 关闭端口28000的服务</span><br><span class="line"># 结果如图，是不是很神奇？</span><br></pre></td></tr></table></figure>
 <p>  <img src="replset10.png" alt="replset10"> </p>
@@ -471,19 +471,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
