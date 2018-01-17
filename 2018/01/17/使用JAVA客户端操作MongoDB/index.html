@@ -6,15 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.gaozhy.cn">
-  <title>Category: Big Data | 高志逺的博客</title>
+  <title>使用JAVA客户端操作MongoDB (三) | 高志逺的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="高志逺的博客">
-<meta property="og:url" content="http://www.gaozhy.cn/categories/Big-Data/index.html">
+  <meta name="description" content="NOTE 3.6版本的MongoDB，只允许localhost连接，如果您要使用非本地的客户端连接，需要绑定IP才可以，在这里我们关闭mongodb服务端，添加参数 --bind_ip_all，重新启动服务。继续测试~~~   maven坐标12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;    &amp;lt;">
+<meta name="keywords" content="NOSQL,数据库">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用JAVA客户端操作MongoDB (三)">
+<meta property="og:url" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/index.html">
 <meta property="og:site_name" content="高志逺的博客">
+<meta property="og:description" content="NOTE 3.6版本的MongoDB，只允许localhost连接，如果您要使用非本地的客户端连接，需要绑定IP才可以，在这里我们关闭mongodb服务端，添加参数 --bind_ip_all，重新启动服务。继续测试~~~   maven坐标12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;    &amp;lt;">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/logo.jpg">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/add.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/update4.png">
+<meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/delete2.png">
+<meta property="og:updated_time" content="2018-01-17T08:44:07.807Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="高志逺的博客">
+<meta name="twitter:title" content="使用JAVA客户端操作MongoDB (三)">
+<meta name="twitter:description" content="NOTE 3.6版本的MongoDB，只允许localhost连接，如果您要使用非本地的客户端连接，需要绑定IP才可以，在这里我们关闭mongodb服务端，添加参数 --bind_ip_all，重新启动服务。继续测试~~~   maven坐标12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;    &amp;lt;">
+<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/logo.jpg">
   
     <link rel="alternative" href="/atom.xml" title="高志逺的博客" type="application/atom+xml">
   
@@ -140,36 +150,78 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-使用JAVA客户端操作MongoDB" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      使用JAVA客户端操作MongoDB (三)
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/17/使用JAVA客户端操作MongoDB/" class="archive-article-date">
+
+        
+        <a href="/2018/01/17/使用JAVA客户端操作MongoDB/" class="archive-article-date">
   	<time datetime="2018-01-17T08:41:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/17/使用JAVA客户端操作MongoDB/">使用JAVA客户端操作MongoDB (三)</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="/2018/01/17/使用JAVA客户端操作MongoDB/logo.jpg" title="图片">
+<blockquote>
+<h5 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h5><ol>
+<li>3.6版本的MongoDB，只允许localhost连接，如果您要使用非本地的客户端连接，需要绑定IP才可以，在这里我们关闭mongodb服务端，添加参数 <code>--bind_ip_all</code>，重新启动服务。继续测试~~~</li>
+</ol>
+</blockquote>
+<h4 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mongodb-driver&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.6.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="1-插入"><a href="#1-插入" class="headerlink" title="1. 插入"></a>1. 插入</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void testInsert()&#123;</span><br><span class="line"></span><br><span class="line">      MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">      // 获取指定数据库</span><br><span class="line">      MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">      // 获取指定集合</span><br><span class="line">      MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">      // 创建需要插入的单个文档</span><br><span class="line">      Document doc = new Document(&quot;name&quot;, &quot;MongoDB&quot;)</span><br><span class="line">              .append(&quot;type&quot;, &quot;database&quot;)</span><br><span class="line">              .append(&quot;count&quot;, 1)</span><br><span class="line">              .append(&quot;versions&quot;, Arrays.asList(&quot;v3.2&quot;, &quot;v3.0&quot;, &quot;v2.6&quot;))</span><br><span class="line">              .append(&quot;info&quot;, new Document(&quot;x&quot;, 203).append(&quot;y&quot;, 102));</span><br><span class="line"></span><br><span class="line">      // 测试插入</span><br><span class="line">      collection.insertOne(doc);</span><br><span class="line"></span><br><span class="line">      // 测试插入多个文档</span><br><span class="line">      ArrayList&lt;Document&gt; documents = new ArrayList&lt;Document&gt;();</span><br><span class="line">      for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">           documents.add(new Document(&quot;i&quot;,i));</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      collection.insertMany(documents);</span><br><span class="line">      mongoClient.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="add.png" alt="add"> </p>
+<h4 id="2-修改"><a href="#2-修改" class="headerlink" title="2. 修改"></a>2. 修改</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"> public void test3()&#123;</span><br><span class="line">     MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">     // 获取指定数据库</span><br><span class="line">     MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">     // 获取指定集合</span><br><span class="line">     MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">     // update t_user set i = 110 where i = 10</span><br><span class="line">     //UpdateResult updateResult = collection.updateOne(new Document(&quot;i&quot;, 10), new Document(&quot;$set&quot;, new Document(&quot;i&quot;, 110)));</span><br><span class="line"></span><br><span class="line">     // update t_user set i =10 where i &lt; 20</span><br><span class="line">     // lt(key,value)  静态导入  import static com.mongodb.client.model.Filters.lt;</span><br><span class="line">     collection.updateMany(lt(&quot;i&quot;,20),new Document(&quot;$set&quot;,new Document(&quot;i&quot;,10).append(&quot;test&quot;,&quot;test value&quot;)));</span><br><span class="line"></span><br><span class="line">     mongoClient.close();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="update4.png" alt="update4"></p>
+<h4 id="3-删除"><a href="#3-删除" class="headerlink" title="3. 删除"></a>3. 删除</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void test4()&#123;</span><br><span class="line">      MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">      // 获取指定数据库</span><br><span class="line">      MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">      // 获取指定集合</span><br><span class="line">      MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">      DeleteResult deleteResult = null;</span><br><span class="line"></span><br><span class="line">      //deleteResult =collection.deleteOne(eq(&quot;i&quot;, 110));</span><br><span class="line"></span><br><span class="line">      deleteResult = collection.deleteMany(lt(&quot;i&quot;, 20));</span><br><span class="line"></span><br><span class="line">      System.out.println(&quot;删除的文档数：&quot;+deleteResult.getDeletedCount());</span><br><span class="line"></span><br><span class="line">      mongoClient.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="delete2.png" alt="delete2"></p>
+<h4 id="4-查询"><a href="#4-查询" class="headerlink" title="4. 查询"></a>4. 查询</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"> public void test5()&#123;</span><br><span class="line">     MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">     // 获取指定数据库</span><br><span class="line">     MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">     // 获取指定集合</span><br><span class="line">     MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">     // 查所有</span><br><span class="line">     FindIterable&lt;Document&gt; documents = null;</span><br><span class="line"></span><br><span class="line">     documents = collection.find();</span><br><span class="line"></span><br><span class="line">     // 条件查询 select * fromt t_user where i = 20</span><br><span class="line">     documents = collection.find(eq(&quot;i&quot;,20));</span><br><span class="line"></span><br><span class="line">     // select * from t_user where i &lt;= 20</span><br><span class="line">     documents = collection.find(lte(&quot;i&quot;,30));</span><br><span class="line"></span><br><span class="line">     // select * from t_user where i = 30 or i = 40 or i = 50</span><br><span class="line">     documents = collection.find(in(&quot;i&quot;,30,40,50));</span><br><span class="line"></span><br><span class="line">     // SELECT * FROM t_user WHERE i = 50 OR i &lt; 25</span><br><span class="line">     documents = collection.find(or(new Document(&quot;i&quot;,50),lt(&quot;i&quot;,25)));</span><br><span class="line"></span><br><span class="line">     // 模糊查询 参数二：模糊条件</span><br><span class="line">     documents = collection.find(regex(&quot;test&quot;,&quot;test&quot;));</span><br><span class="line"></span><br><span class="line">     // 排序 SELECT * FROM t_user WHERE i &gt;= 90 order by i desc</span><br><span class="line">     documents = collection.find(gt(&quot;i&quot;,90)).sort(Sorts.descending(&quot;i&quot;));</span><br><span class="line"></span><br><span class="line">     // 分页查询</span><br><span class="line">     documents = collection.find().skip(50).limit(10);</span><br><span class="line"></span><br><span class="line">     for (Document document : documents) &#123;</span><br><span class="line">         System.out.println(document);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     mongoClient.close();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
 
-        <div class="article-info info-on-right">
-          
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/pay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/img/weichat_pay.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -185,7 +237,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -198,229 +250,120 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/16/MongoDB常用操作-CRUD/" class="archive-article-date">
-  	<time datetime="2018-01-16T09:39:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/16/MongoDB常用操作-CRUD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">MongoDB常用操作命令 (二)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/16/MongoDB常用操作-CRUD/">MongoDB常用操作命令 (二)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NOSQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/16/MongoDB概述/" class="archive-article-date">
-  	<time datetime="2018-01-16T09:25:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-16</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/16/MongoDB概述/">MongoDB概述 (一)</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NOSQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/FastDFS概述/" class="archive-article-date">
-  	<time datetime="2018-01-11T00:12:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/FastDFS概述/">FastDFS概述 (一)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">分布式</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文件系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/07/Solr轻松入门/" class="archive-article-date">
-  	<time datetime="2018-01-07T03:24:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/07/Solr轻松入门/">Solr轻松入门</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">全文检索</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">引擎</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/",
+  owner: 'gaozhy-baizhi',
+  repo: 'gaozhy-baizhi.github.io',
+  oauth: {
+    client_id: 'f32bb0a5501e40409b3b',
+    client_secret: '4167e05bbad4e7f7b15773901eae5ba83852ed45',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -447,10 +390,10 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
-		isCategory: true,
+		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",

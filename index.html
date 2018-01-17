@@ -142,6 +142,107 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-使用JAVA客户端操作MongoDB" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/17/使用JAVA客户端操作MongoDB/">使用JAVA客户端操作MongoDB (三)</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/17/使用JAVA客户端操作MongoDB/" class="archive-article-date">
+  	<time datetime="2018-01-17T08:41:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-17</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <img src="/2018/01/17/使用JAVA客户端操作MongoDB/logo.jpg" title="图片">
+<blockquote>
+<h5 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE"></a>NOTE</h5><ol>
+<li>3.6版本的MongoDB，只允许localhost连接，如果您要使用非本地的客户端连接，需要绑定IP才可以，在这里我们关闭mongodb服务端，添加参数 <code>--bind_ip_all</code>，重新启动服务。继续测试~~~</li>
+</ol>
+</blockquote>
+<h4 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mongodb-driver&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.6.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="1-插入"><a href="#1-插入" class="headerlink" title="1. 插入"></a>1. 插入</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void testInsert()&#123;</span><br><span class="line"></span><br><span class="line">      MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">      // 获取指定数据库</span><br><span class="line">      MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">      // 获取指定集合</span><br><span class="line">      MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">      // 创建需要插入的单个文档</span><br><span class="line">      Document doc = new Document(&quot;name&quot;, &quot;MongoDB&quot;)</span><br><span class="line">              .append(&quot;type&quot;, &quot;database&quot;)</span><br><span class="line">              .append(&quot;count&quot;, 1)</span><br><span class="line">              .append(&quot;versions&quot;, Arrays.asList(&quot;v3.2&quot;, &quot;v3.0&quot;, &quot;v2.6&quot;))</span><br><span class="line">              .append(&quot;info&quot;, new Document(&quot;x&quot;, 203).append(&quot;y&quot;, 102));</span><br><span class="line"></span><br><span class="line">      // 测试插入</span><br><span class="line">      collection.insertOne(doc);</span><br><span class="line"></span><br><span class="line">      // 测试插入多个文档</span><br><span class="line">      ArrayList&lt;Document&gt; documents = new ArrayList&lt;Document&gt;();</span><br><span class="line">      for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">           documents.add(new Document(&quot;i&quot;,i));</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      collection.insertMany(documents);</span><br><span class="line">      mongoClient.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="add.png" alt="add"> </p>
+<h4 id="2-修改"><a href="#2-修改" class="headerlink" title="2. 修改"></a>2. 修改</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"> public void test3()&#123;</span><br><span class="line">     MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">     // 获取指定数据库</span><br><span class="line">     MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">     // 获取指定集合</span><br><span class="line">     MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">     // update t_user set i = 110 where i = 10</span><br><span class="line">     //UpdateResult updateResult = collection.updateOne(new Document(&quot;i&quot;, 10), new Document(&quot;$set&quot;, new Document(&quot;i&quot;, 110)));</span><br><span class="line"></span><br><span class="line">     // update t_user set i =10 where i &lt; 20</span><br><span class="line">     // lt(key,value)  静态导入  import static com.mongodb.client.model.Filters.lt;</span><br><span class="line">     collection.updateMany(lt(&quot;i&quot;,20),new Document(&quot;$set&quot;,new Document(&quot;i&quot;,10).append(&quot;test&quot;,&quot;test value&quot;)));</span><br><span class="line"></span><br><span class="line">     mongoClient.close();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="update4.png" alt="update4"></p>
+<h4 id="3-删除"><a href="#3-删除" class="headerlink" title="3. 删除"></a>3. 删除</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void test4()&#123;</span><br><span class="line">      MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">      // 获取指定数据库</span><br><span class="line">      MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">      // 获取指定集合</span><br><span class="line">      MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">      DeleteResult deleteResult = null;</span><br><span class="line"></span><br><span class="line">      //deleteResult =collection.deleteOne(eq(&quot;i&quot;, 110));</span><br><span class="line"></span><br><span class="line">      deleteResult = collection.deleteMany(lt(&quot;i&quot;, 20));</span><br><span class="line"></span><br><span class="line">      System.out.println(&quot;删除的文档数：&quot;+deleteResult.getDeletedCount());</span><br><span class="line"></span><br><span class="line">      mongoClient.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>  <img src="delete2.png" alt="delete2"></p>
+<h4 id="4-查询"><a href="#4-查询" class="headerlink" title="4. 查询"></a>4. 查询</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"> public void test5()&#123;</span><br><span class="line">     MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">     // 获取指定数据库</span><br><span class="line">     MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">     // 获取指定集合</span><br><span class="line">     MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">     // 查所有</span><br><span class="line">     FindIterable&lt;Document&gt; documents = null;</span><br><span class="line"></span><br><span class="line">     documents = collection.find();</span><br><span class="line"></span><br><span class="line">     // 条件查询 select * fromt t_user where i = 20</span><br><span class="line">     documents = collection.find(eq(&quot;i&quot;,20));</span><br><span class="line"></span><br><span class="line">     // select * from t_user where i &lt;= 20</span><br><span class="line">     documents = collection.find(lte(&quot;i&quot;,30));</span><br><span class="line"></span><br><span class="line">     // select * from t_user where i = 30 or i = 40 or i = 50</span><br><span class="line">     documents = collection.find(in(&quot;i&quot;,30,40,50));</span><br><span class="line"></span><br><span class="line">     // SELECT * FROM t_user WHERE i = 50 OR i &lt; 25</span><br><span class="line">     documents = collection.find(or(new Document(&quot;i&quot;,50),lt(&quot;i&quot;,25)));</span><br><span class="line"></span><br><span class="line">     // 模糊查询 参数二：模糊条件</span><br><span class="line">     documents = collection.find(regex(&quot;test&quot;,&quot;test&quot;));</span><br><span class="line"></span><br><span class="line">     // 排序 SELECT * FROM t_user WHERE i &gt;= 90 order by i desc</span><br><span class="line">     documents = collection.find(gt(&quot;i&quot;,90)).sort(Sorts.descending(&quot;i&quot;));</span><br><span class="line"></span><br><span class="line">     // 分页查询</span><br><span class="line">     documents = collection.find().skip(50).limit(10);</span><br><span class="line"></span><br><span class="line">     for (Document document : documents) &#123;</span><br><span class="line">         System.out.println(document);</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">     mongoClient.close();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NOSQL</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/17/使用JAVA客户端操作MongoDB/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-MongoDB常用操作-CRUD" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -521,98 +622,6 @@
 
 
   
-    <article id="post-Spring-Boot轻松入门" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/01/07/Spring-Boot轻松入门/">Spring Boot轻松入门</a>
-    </h1>
-  
-
-        
-        <a href="/2018/01/07/Spring-Boot轻松入门/" class="archive-article-date">
-  	<time datetime="2018-01-07T03:10:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <img src="/2018/01/07/Spring-Boot轻松入门/logo.jpg" title="学习笔记">
-<h2 id="一、-SpringBoot概述"><a href="#一、-SpringBoot概述" class="headerlink" title="一、 SpringBoot概述"></a>一、 SpringBoot概述</h2><h3 id="1-概述"><a href="#1-概述" class="headerlink" title="1. 概述"></a>1. 概述</h3><h5 id="Spring-Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置-习惯优于配置-，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring-Boot致力于在蓬勃发展的快速应用开发领域（rapid-application-development）成为领导者。"><a href="#Spring-Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置-习惯优于配置-，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring-Boot致力于在蓬勃发展的快速应用开发领域（rapid-application-development）成为领导者。" class="headerlink" title="Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置(习惯优于配置)，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域（rapid application development）成为领导者。"></a>Spring Boot是由Pivotal团队提供的全新框架，其设计目的是用来简化新Spring应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置(<strong>习惯优于配置</strong>)，从而使开发人员不再需要定义样板化的配置。通过这种方式，Spring Boot致力于在蓬勃发展的快速应用开发领域（rapid application development）成为领导者。</h5>
-        
-          <a class="article-more-a" href="/2018/01/07/Spring-Boot轻松入门/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">微服务</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">框架</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/JAVA//" class="article-tag-list-link color5">JAVA</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/01/07/Spring-Boot轻松入门/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -706,19 +715,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -730,15 +739,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">诗和远方</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">诗和远方</a>
               </li>
             
             <div class="clearfix"></div>
