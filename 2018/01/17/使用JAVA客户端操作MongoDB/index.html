@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/add.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/update4.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/使用JAVA客户端操作MongoDB/delete2.png">
-<meta property="og:updated_time" content="2018-01-17T08:44:07.807Z">
+<meta property="og:updated_time" content="2018-01-17T08:57:32.423Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用JAVA客户端操作MongoDB (三)">
 <meta name="twitter:description" content="NOTE 3.6版本的MongoDB，只允许localhost连接，如果您要使用非本地的客户端连接，需要绑定IP才可以，在这里我们关闭mongodb服务端，添加参数 --bind_ip_all，重新启动服务。继续测试~~~   maven坐标12345&amp;lt;dependency&amp;gt;    &amp;lt;groupId&amp;gt;org.mongodb&amp;lt;/groupId&amp;gt;    &amp;lt;">
@@ -177,6 +177,7 @@
 </ol>
 </blockquote>
 <h4 id="maven坐标"><a href="#maven坐标" class="headerlink" title="maven坐标"></a>maven坐标</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;org.mongodb&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;mongodb-driver&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;3.6.1&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
 <h4 id="1-插入"><a href="#1-插入" class="headerlink" title="1. 插入"></a>1. 插入</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line">  public void testInsert()&#123;</span><br><span class="line"></span><br><span class="line">      MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">      // 获取指定数据库</span><br><span class="line">      MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">      // 获取指定集合</span><br><span class="line">      MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">      // 创建需要插入的单个文档</span><br><span class="line">      Document doc = new Document(&quot;name&quot;, &quot;MongoDB&quot;)</span><br><span class="line">              .append(&quot;type&quot;, &quot;database&quot;)</span><br><span class="line">              .append(&quot;count&quot;, 1)</span><br><span class="line">              .append(&quot;versions&quot;, Arrays.asList(&quot;v3.2&quot;, &quot;v3.0&quot;, &quot;v2.6&quot;))</span><br><span class="line">              .append(&quot;info&quot;, new Document(&quot;x&quot;, 203).append(&quot;y&quot;, 102));</span><br><span class="line"></span><br><span class="line">      // 测试插入</span><br><span class="line">      collection.insertOne(doc);</span><br><span class="line"></span><br><span class="line">      // 测试插入多个文档</span><br><span class="line">      ArrayList&lt;Document&gt; documents = new ArrayList&lt;Document&gt;();</span><br><span class="line">      for (int i = 0; i &lt; 100; i++) &#123;</span><br><span class="line">           documents.add(new Document(&quot;i&quot;,i));</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      collection.insertMany(documents);</span><br><span class="line">      mongoClient.close();</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p>  <img src="add.png" alt="add"> </p>
 <h4 id="2-修改"><a href="#2-修改" class="headerlink" title="2. 修改"></a>2. 修改</h4>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Test</span><br><span class="line"> public void test3()&#123;</span><br><span class="line">     MongoClient mongoClient = new MongoClient(&quot;192.168.128.156&quot;, 27017);</span><br><span class="line"></span><br><span class="line">     // 获取指定数据库</span><br><span class="line">     MongoDatabase database = mongoClient.getDatabase(&quot;test&quot;);</span><br><span class="line"></span><br><span class="line">     // 获取指定集合</span><br><span class="line">     MongoCollection&lt;Document&gt; collection = database.getCollection(&quot;users&quot;);</span><br><span class="line"></span><br><span class="line">     // update t_user set i = 110 where i = 10</span><br><span class="line">     //UpdateResult updateResult = collection.updateOne(new Document(&quot;i&quot;, 10), new Document(&quot;$set&quot;, new Document(&quot;i&quot;, 110)));</span><br><span class="line"></span><br><span class="line">     // update t_user set i =10 where i &lt; 20</span><br><span class="line">     // lt(key,value)  静态导入  import static com.mongodb.client.model.Filters.lt;</span><br><span class="line">     collection.updateMany(lt(&quot;i&quot;,20),new Document(&quot;$set&quot;,new Document(&quot;i&quot;,10).append(&quot;test&quot;,&quot;test value&quot;)));</span><br><span class="line"></span><br><span class="line">     mongoClient.close();</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
@@ -452,19 +453,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -476,15 +477,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">诗和远方</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">微服务</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">框架</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">诗和远方</a>
               </li>
             
             <div class="clearfix"></div>
