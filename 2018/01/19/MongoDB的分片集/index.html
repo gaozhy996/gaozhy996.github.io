@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/19/MongoDB的分片集/sharding3.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/19/MongoDB的分片集/sharding4.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/19/MongoDB的分片集/sharding5.png">
-<meta property="og:updated_time" content="2018-01-19T10:13:20.740Z">
+<meta property="og:updated_time" content="2018-01-19T10:18:45.240Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB的分片集 (六)">
 <meta name="twitter:description" content="Sharding（分片） is a method for distributing data across multiple machines. MongoDB uses sharding to support deployments with very large data sets and high throughput operations.   个人理解：分片是一种支持海量数据存储并进">
@@ -199,7 +199,7 @@
 <p>  <img src="sharding3.png" alt="分片状态"> </p>
 <h6 id="6-测试"><a href="#6-测试" class="headerlink" title="6. 测试"></a>6. 测试</h6>  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 连接mongos，插入50W数据测试下分片</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">0</span>;i&lt;<span class="number">500000</span>;i++)&#123;</span><br><span class="line">	db.users.insert(&#123;<span class="string">"name"</span>:<span class="string">"zs"</span>+i,<span class="string">"age"</span>:i&#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
   <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">mongos&gt; sh.status();</span><br><span class="line">--- Sharding Status --- </span><br><span class="line">  sharding version: &#123;</span><br><span class="line">  	"_id" : 1,</span><br><span class="line">  	"minCompatibleVersion" : 5,</span><br><span class="line">  	"currentVersion" : 6,</span><br><span class="line">  	"clusterId" : ObjectId("5a6163a5130c3601a3a20db4")</span><br><span class="line">  &#125;</span><br><span class="line">  shards:</span><br><span class="line">        &#123;  <span class="attr">"_id"</span> : <span class="string">"shard0000"</span>,  <span class="attr">"host"</span> : <span class="string">"192.168.128.156:28001"</span>,  <span class="attr">"state"</span> : <span class="number">1</span> &#125;</span><br><span class="line">        &#123;  <span class="attr">"_id"</span> : <span class="string">"shard0001"</span>,  <span class="attr">"host"</span> : <span class="string">"192.168.128.156:28002"</span>,  <span class="attr">"state"</span> : <span class="number">1</span> &#125;</span><br><span class="line">        &#123;  <span class="attr">"_id"</span> : <span class="string">"shard0002"</span>,  <span class="attr">"host"</span> : <span class="string">"192.168.128.156:28003"</span>,  <span class="attr">"state"</span> : <span class="number">1</span> &#125;</span><br><span class="line">  active mongoses:</span><br><span class="line">        "3.6.2" : 1</span><br><span class="line">  autosplit:</span><br><span class="line">        Currently enabled: yes</span><br><span class="line">  balancer:</span><br><span class="line">        Currently enabled:  yes</span><br><span class="line">        Currently running:  yes</span><br><span class="line">        Collections with active migrations: </span><br><span class="line">                testdb.users started at Fri Jan 19 2018 11:25:25 GMT+0800 (CST)</span><br><span class="line">        Failed balancer rounds in last 5 attempts:  0</span><br><span class="line">        Migration Results for the last 24 hours: </span><br><span class="line">                5 : Success</span><br><span class="line">  databases:</span><br><span class="line">        &#123;  <span class="attr">"_id"</span> : <span class="string">"config"</span>,  <span class="attr">"primary"</span> : <span class="string">"config"</span>,  <span class="attr">"partitioned"</span> : <span class="literal">true</span> &#125;</span><br><span class="line">                config.system.sessions</span><br><span class="line">                        shard key: &#123; "_id" : 1 &#125;</span><br><span class="line">                        unique: false</span><br><span class="line">                        balancing: true</span><br><span class="line">                        chunks:</span><br><span class="line">                                shard0000	1</span><br><span class="line">                        &#123; "_id" : &#123; "$minKey" : 1 &#125; &#125; --&gt;&gt; &#123; "_id" : &#123; "$maxKey" : 1 &#125; &#125; on : shard0000 Timestamp(1, 0) </span><br><span class="line">        &#123;  <span class="attr">"_id"</span> : <span class="string">"testdb"</span>,  <span class="attr">"primary"</span> : <span class="string">"shard0000"</span>,  <span class="attr">"partitioned"</span> : <span class="literal">true</span> &#125;</span><br><span class="line">                testdb.users</span><br><span class="line">                        shard key: &#123; "name" : 1 &#125;</span><br><span class="line">                        unique: false</span><br><span class="line">                        balancing: true</span><br><span class="line">                        chunks:</span><br><span class="line">                                shard0000	3</span><br><span class="line">                                shard0001	3</span><br><span class="line">                                shard0002	5</span><br><span class="line">                        &#123; "name" : &#123; "$minKey" : 1 &#125; &#125; --&gt;&gt; &#123; "name" : "zs1" &#125; on : shard0002 Timestamp(5, 0) </span><br><span class="line">                        &#123; "name" : "zs1" &#125; --&gt;&gt; &#123; "name" : "zs108900" &#125; on : shard0002 Timestamp(6, 2) </span><br><span class="line">                        &#123; "name" : "zs108900" &#125; --&gt;&gt; &#123; "name" : "zs17318" &#125; on : shard0002 Timestamp(6, 3) </span><br><span class="line">                        &#123; "name" : "zs17318" &#125; --&gt;&gt; &#123; "name" : "zs19072" &#125; on : shard0002 Timestamp(6, 4) </span><br><span class="line">                        &#123; "name" : "zs19072" &#125; --&gt;&gt; &#123; "name" : "zs28146" &#125; on : shard0001 Timestamp(5, 1) </span><br><span class="line">                        &#123; "name" : "zs28146" &#125; --&gt;&gt; &#123; "name" : "zs42" &#125; on : shard0001 Timestamp(4, 3) </span><br><span class="line">                        &#123; "name" : "zs42" &#125; --&gt;&gt; &#123; "name" : "zs5163" &#125; on : shard0001 Timestamp(4, 4) </span><br><span class="line">                        &#123; "name" : "zs5163" &#125; --&gt;&gt; &#123; "name" : "zs60703" &#125; on : shard0002 Timestamp(6, 0) </span><br><span class="line">                        &#123; "name" : "zs60703" &#125; --&gt;&gt; &#123; "name" : "zs6978" &#125; on : shard0000 Timestamp(6, 1) </span><br><span class="line">                        &#123; "name" : "zs6978" &#125; --&gt;&gt; &#123; "name" : "zs8724" &#125; on : shard0000 Timestamp(5, 4) </span><br><span class="line">                        &#123; "name" : "zs8724" &#125; --&gt;&gt; &#123; "name" : &#123; "$maxKey" : 1 &#125; &#125; on : shard0000 Timestamp(1, 3)</span><br></pre></td></tr></table></figure>
-<h1 id="分片结果"><a href="#分片结果" class="headerlink" title="分片结果"></a>分片结果</h1><p>  ```<br>  <img src="sharding4.png" alt="sharding4"> </p>
+<p>  <code>分片结果</code><br>  <img src="sharding4.png" alt="sharding4"> </p>
 <p>  <img src="sharding5.png" alt="sharding5"> </p>
 
       
@@ -470,14 +470,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">NOSQL</a>
               </li>
              
@@ -486,11 +478,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">全文检索</a>
+                <a href="javascript:void(0)" class="js-tag color4">分布式</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">引擎</a>
+                <a href="javascript:void(0)" class="js-tag color5">文件系统</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -499,6 +491,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">框架</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">全文检索</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">引擎</a>
               </li>
              
               <li class="article-tag-list-item">
