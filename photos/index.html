@@ -6,25 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://www.gaozhy.cn">
-  <title>MongoDB基于副本集完成读写分离 (五) | 高志逺的博客</title>
+  <title>相册 | 高志逺的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="好了，我们在上一个章节（搭建MongoDB副本集 (四) ）中，已经介绍过利用Mongo副本集可以搭建一个高可用的集群环境。但是在默情况下，读写操作都在Primary上进行，在高并发的环境下，Primary的负载较大。那如何解决这个问题呢？，我们可以利用读写分离，也就是Primary负责写操作，Secondary负责读操作，分摊Primary的压力。">
-<meta name="keywords" content="NOSQL,数据库">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MongoDB基于副本集完成读写分离 (五)">
-<meta property="og:url" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="相册">
+<meta property="og:url" content="http://www.gaozhy.cn/photos/index.html">
 <meta property="og:site_name" content="高志逺的博客">
-<meta property="og:description" content="好了，我们在上一个章节（搭建MongoDB副本集 (四) ）中，已经介绍过利用Mongo副本集可以搭建一个高可用的集群环境。但是在默情况下，读写操作都在Primary上进行，在高并发的环境下，Primary的负载较大。那如何解决这个问题呢？，我们可以利用读写分离，也就是Primary负责写操作，Secondary负责读操作，分摊Primary的压力。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/logo.jpg">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/rws0.png">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/rws1.png">
-<meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/rws2.png">
-<meta property="og:updated_time" content="2018-01-19T09:00:30.777Z">
+<meta property="og:updated_time" content="2018-01-28T08:56:37.189Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MongoDB基于副本集完成读写分离 (五)">
-<meta name="twitter:description" content="好了，我们在上一个章节（搭建MongoDB副本集 (四) ）中，已经介绍过利用Mongo副本集可以搭建一个高可用的集群环境。但是在默情况下，读写操作都在Primary上进行，在高并发的环境下，Primary的负载较大。那如何解决这个问题呢？，我们可以利用读写分离，也就是Primary负责写操作，Secondary负责读操作，分摊Primary的压力。">
-<meta name="twitter:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/logo.jpg">
+<meta name="twitter:title" content="相册">
   
     <link rel="alternative" href="/atom.xml" title="高志逺的博客" type="application/atom+xml">
   
@@ -156,90 +147,28 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-基于副本集的读写分离" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      MongoDB基于副本集完成读写分离 (五)
+      相册
     </h1>
   
 
         
-        <a href="/2018/01/18/基于副本集的读写分离/" class="archive-article-date">
-  	<time datetime="2018-01-18T10:27:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-18</time>
+        <a href="/photos/index.html" class="archive-article-date">
+  	<time datetime="2018-01-28T08:56:37.274Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-28</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <img src="/2018/01/18/基于副本集的读写分离/logo.jpg" title="logo">
-<blockquote>
-<p>好了，我们在上一个章节<a href="http://www.gaozhy.cn/2018/01/17/%E6%90%AD%E5%BB%BAMongoDB%E5%89%AF%E6%9C%AC%E9%9B%86/">（搭建MongoDB副本集 (四) ）</a>中，已经介绍过利用Mongo副本集可以搭建一个高可用的集群环境。但是在默情况下，读写操作都在<code>Primary</code>上进行，在高并发的环境下，<code>Primary</code>的负载较大。那如何解决这个问题呢？，我们可以利用读写分离，也就是<code>Primary</code>负责写操作，<code>Secondary</code>负责读操作，分摊<code>Primary</code>的压力。</p>
-</blockquote>
-<a id="more"></a>
-<p><img src="rws0.png" alt="读写分离"></p>
-<h3 id="一、MongoDB-drivers-support-five-read-preference-modes"><a href="#一、MongoDB-drivers-support-five-read-preference-modes" class="headerlink" title="一、MongoDB drivers support five read preference modes."></a>一、MongoDB drivers support five read preference modes.</h3><table>
-<thead>
-<tr>
-<th>Read Preference Mode</th>
-<th>Description</th>
-<th>中文解释</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>primary</code></td>
-<td>Default mode. All operations read from the current replica set primary.</td>
-<td>默认，从主节点读取数据</td>
-</tr>
-<tr>
-<td><code>primaryPreferred</code></td>
-<td>In most situations, operations read from the primary but if it is unavailable, operations read from secondary</td>
-<td>在主节点不可用时，从副节点读取数据</td>
-</tr>
-<tr>
-<td><code>secondary</code></td>
-<td>All operations read from the secondary members of the replica set.</td>
-<td>所有的读操作，从副节点读取数据</td>
-</tr>
-<tr>
-<td><code>secondaryPreferred</code></td>
-<td>In most situations, operations read from secondary members but if no secondary members are available, operations read from the primary.</td>
-<td>在副节点不可用时，从主节点读取数据</td>
-</tr>
-<tr>
-<td><code>nearest</code></td>
-<td>Operations read from member of the replica set with the least network latency, irrespective of the member’s type.</td>
-<td>从网络延迟最小的节点获取数据</td>
-</tr>
-</tbody>
-</table>
-<h3 id="二、配置"><a href="#二、配置" class="headerlink" title="二、配置"></a>二、配置</h3>  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># 分别连接两个Sencondary节点服务器，设置为可读状态</span><br><span class="line">db.getMongo().setSlaveOk();</span><br></pre></td></tr></table></figure>
-<h3 id="三、代码如下"><a href="#三、代码如下" class="headerlink" title="三、代码如下"></a>三、代码如下</h3><blockquote>
-<p>注意：在这里我们使用Spring Data提供的MongoTemplate操作<code>ReplSet</code></p>
-</blockquote>
-<h5 id="1-applicationContext-xml"><a href="#1-applicationContext-xml" class="headerlink" title="1. applicationContext.xml"></a>1. applicationContext.xml</h5>  <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!---</span></span><br><span class="line"><span class="comment">  192.168.128.156:28001 primary</span></span><br><span class="line"><span class="comment">  192.168.128.156:28000 secondary</span></span><br><span class="line"><span class="comment">  192.168.128.156:28002 secondary</span></span><br><span class="line"><span class="comment">  read-preference="secondary_preferred" 优先从副节点获取数据</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mongo:mongo-client</span> <span class="attr">id</span>=<span class="string">"mongoClient"</span> <span class="attr">replica-set</span>=<span class="string">"192.168.128.156:28000,192.168.128.156:28001,192.168.128.156:28002"</span>&gt;</span></span><br><span class="line">          <span class="tag">&lt;<span class="name">mongo:client-options</span> <span class="attr">connections-per-host</span>=<span class="string">"8"</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">threads-allowed-to-block-for-connection-multiplier</span>=<span class="string">"4"</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">connect-timeout</span>=<span class="string">"1000"</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">max-wait-time</span>=<span class="string">"1500"</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">socket-keep-alive</span>=<span class="string">"true"</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">socket-timeout</span>=<span class="string">"1500"</span></span></span><br><span class="line"><span class="tag">                                <span class="attr">read-preference</span>=<span class="string">"secondary_preferred"</span></span></span><br><span class="line"><span class="tag">                                /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mongo:mongo-client</span>&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">mongo:db-factory</span> <span class="attr">dbname</span>=<span class="string">"database"</span> <span class="attr">mongo-ref</span>=<span class="string">"mongoClient"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;<span class="name">bean</span> <span class="attr">id</span>=<span class="string">"mongoTemplate"</span> <span class="attr">class</span>=<span class="string">"org.springframework.data.mongodb.core.MongoTemplate"</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">constructor-arg</span> <span class="attr">name</span>=<span class="string">"mongoDbFactory"</span> <span class="attr">ref</span>=<span class="string">"mongoDbFactory"</span>/&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">bean</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h5 id="2-Person实体"><a href="#2-Person实体" class="headerlink" title="2. Person实体"></a>2. Person实体</h5>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Document</span>(collection = <span class="string">"p"</span>) <span class="comment">// Mongo中集合名</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Id</span>  <span class="comment">// id属性 为文档的主键</span></span><br><span class="line">  <span class="keyword">private</span> Integer id;</span><br><span class="line">  <span class="keyword">private</span> String name;</span><br><span class="line">  <span class="keyword">private</span> Integer age;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Integer <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> id;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.id = id;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Integer <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">      <span class="keyword">return</span> age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(Integer age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@PersistenceConstructor</span>  <span class="comment">// 从mongo中恢复数据到实体时，使用的构造方法</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Person</span><span class="params">(Integer id, String name, Integer age)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>.id = id;</span><br><span class="line">      <span class="keyword">this</span>.name = name;</span><br><span class="line">      <span class="keyword">this</span>.age = age;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-<h5 id="3-测试数据插入"><a href="#3-测试数据插入" class="headerlink" title="3.测试数据插入"></a>3.测试数据插入</h5>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextConfiguration</span>(<span class="string">"classpath:applicationContext.xml"</span>)</span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试读写分离</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">        Person person1 = <span class="keyword">new</span> Person(<span class="number">1</span>,<span class="string">"zs"</span>,<span class="number">18</span>);</span><br><span class="line">        Person person2 = <span class="keyword">new</span> Person(<span class="number">2</span>,<span class="string">"ls"</span>,<span class="number">18</span>);</span><br><span class="line">        Person person3 = <span class="keyword">new</span> Person(<span class="number">3</span>,<span class="string">"ww"</span>,<span class="number">18</span>);</span><br><span class="line">        Person person4 = <span class="keyword">new</span> Person(<span class="number">4</span>,<span class="string">"zl"</span>,<span class="number">18</span>);</span><br><span class="line">        Person person5 = <span class="keyword">new</span> Person(<span class="number">5</span>,<span class="string">"tq"</span>,<span class="number">18</span>);</span><br><span class="line"></span><br><span class="line">        List&lt;Person&gt; persons = Arrays.asList(person1, person2, person3, person4, person5);</span><br><span class="line"></span><br><span class="line">        mongoTemplate.insertAll(persons);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  <img src="rws1.png" alt="rws1"> </p>
-<blockquote>
-<p>从日志中可以看到，在插入数据的时候，连接的是192.168.128.156:28001的主节点</p>
-</blockquote>
-<h5 id="4-测试数据访问"><a href="#4-测试数据访问" class="headerlink" title="4. 测试数据访问"></a>4. 测试数据访问</h5>  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextConfiguration</span>(<span class="string">"classpath:applicationContext.xml"</span>)</span><br><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner.class)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MongoDBTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 测试读写分离</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span></span>&#123;</span><br><span class="line">        List&lt;Person&gt; peoples = mongoTemplate.findAll(Person.class);</span><br><span class="line">        System.out.println(<span class="string">"查到的文档个数为："</span>+peoples.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>  <img src="rws2.png" alt="rws2"> </p>
-<blockquote>
-<p>仔细查看日志，在数据查询时，连接的是192.168.128.156:28000的副节点。</p>
-</blockquote>
-<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><blockquote>
-<h5 id="NOTE"><a href="#NOTE" class="headerlink" title="NOTE:"></a>NOTE:</h5><ol>
-<li>使用非主节点读取数据可能因为复制延迟读取到旧数据，这里一定要注意噢~~~</li>
-</ol>
-</blockquote>
-
+        <p><link type="text/css" href="/fancybox/jquery.fancybox.css" rel="stylesheet"></p>
+<div class="instagram"><br>    <section class="archives album"><br>        <ul class="img-box-ul"></ul><br>    </section><br></div>
       
 
       
@@ -278,33 +207,7 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">NOSQL</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/Big-Data//" class="article-tag-list-link color4">Big Data</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -354,7 +257,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://www.gaozhy.cn/photos/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -366,25 +269,6 @@
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2018/01/19/MongoDB的分片集/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MongoDB的分片集 (六)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/01/17/搭建MongoDB副本集/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">搭建MongoDB副本集 (四)</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -418,7 +302,7 @@
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/",
+  id: "http://www.gaozhy.cn/photos/index.html",
   owner: 'gaozhy-baizhi',
   repo: 'gaozhy-baizhi.github.io',
   oauth: {
@@ -455,7 +339,7 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
