@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://www.gaozhy.cn/"/>
-  <updated>2018-01-19T10:18:45.240Z</updated>
+  <updated>2018-01-28T13:11:25.937Z</updated>
   <id>http://www.gaozhy.cn/</id>
   
   <author>
@@ -15,6 +15,28 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>成长</title>
+    <link href="http://www.gaozhy.cn/2018/01/28/%E6%88%90%E9%95%BF/"/>
+    <id>http://www.gaozhy.cn/2018/01/28/成长/</id>
+    <published>2018-01-28T13:01:42.000Z</published>
+    <updated>2018-01-28T13:11:25.937Z</updated>
+    
+    <content type="html"><![CDATA[<img src="/2018/01/28/成长/timg.jpg" title="成长"><a id="more"></a><p>成长<br>不一定会得到什么<br>却一定会失去什么</p><p>谢谢那些教会我们的爱<br>教会我们成长的前任<br>教会我们珍惜眼前人<br>也许这是我们留给彼此最好的礼物<br>再见！前任！</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2018/01/28/成长/timg.jpg&quot; title=&quot;成长&quot;&gt;
+    
+    </summary>
+    
+      <category term="杂记" scheme="http://www.gaozhy.cn/categories/%E6%9D%82%E8%AE%B0/"/>
+    
+    
+      <category term="诗和远方" scheme="http://www.gaozhy.cn/tags/%E8%AF%97%E5%92%8C%E8%BF%9C%E6%96%B9/"/>
+    
+  </entry>
   
   <entry>
     <title>MongoDB的分片集 (六)</title>
