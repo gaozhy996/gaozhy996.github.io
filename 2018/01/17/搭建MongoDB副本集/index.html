@@ -28,7 +28,7 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset8.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset2.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/17/搭建MongoDB副本集/replset10.png">
-<meta property="og:updated_time" content="2018-01-19T09:00:21.667Z">
+<meta property="og:updated_time" content="2018-01-31T03:54:47.591Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建MongoDB副本集 (四)">
 <meta name="twitter:description" content="原文：A replica set in MongoDB is a group of mongod processes that maintain the same data set. Replica sets provide redundancy and high availability, and are the basis for all production deployments. 译">
@@ -176,6 +176,33 @@
         
       </header>
     
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+              <span class="btn-bg"></span>
+              <span class="btn-text">文章导航</span>
+              </p>
+      <div id="toc-article" class="toc-article">
+          <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+               <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-节点"><span class="toc-number">1.</span> <span class="toc-text">一、 节点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Primary-Node-主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。"><span class="toc-number">1.1.</span> <span class="toc-text">1. Primary Node 主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Secondary-Node-副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。"><span class="toc-number">1.2.</span> <span class="toc-text">2. Secondary Node 副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-搭建步骤"><span class="toc-number">2.</span> <span class="toc-text">二. 搭建步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo-Server）"><span class="toc-number">2.1.</span> <span class="toc-text">1. 准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo Server）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-准备数据存放目录"><span class="toc-number">2.2.</span> <span class="toc-text">2. 准备数据存放目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-分别启动三台服务器"><span class="toc-number">2.3.</span> <span class="toc-text">3. 分别启动三台服务器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-初始化副本集（使用客户端连接任意Mongo-Server）"><span class="toc-number">2.4.</span> <span class="toc-text">4. 初始化副本集（使用客户端连接任意Mongo Server）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-查看副本集状态"><span class="toc-number">2.5.</span> <span class="toc-text">5. 查看副本集状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-测试副本集数据同步"><span class="toc-number">2.6.</span> <span class="toc-text">6. 测试副本集数据同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-测试集群容错"><span class="toc-number">2.7.</span> <span class="toc-text">7. 测试集群容错</span></a></li></ol></li></ol>
+             </div>
+       <script type="text/javascript">
+      function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+       </script>
+          
+    <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <img src="/2018/01/17/搭建MongoDB副本集/logo.jpg" title="logo">
@@ -368,19 +395,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#一、-节点"><span class="toc-number">1.</span> <span class="toc-text">一、 节点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Primary-Node-主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。"><span class="toc-number">1.1.</span> <span class="toc-text">1. Primary Node 主节点，一个副本集只能有一个主节点，主要作用接受客户端所有写操作（默认情况下，也可以读取数据），并记录主节点操作日志，副节点复制主节点日志，用其同步数据。</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Secondary-Node-副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。"><span class="toc-number">1.2.</span> <span class="toc-text">2. Secondary Node 副节点，复制主节点的操作，并同步其数据，实际上副节点是主节点数据的备份。如果主节点挂掉的话，剩余的副节点会触发选举算法，将其中的一个副节点，选举为主节点。</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#二-搭建步骤"><span class="toc-number">2.</span> <span class="toc-text">二. 搭建步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo-Server）"><span class="toc-number">2.1.</span> <span class="toc-text">1. 准备至少三台服务器（注意：在这里我们在同一台虚拟机上，通过端口号区分不同的Mongo Server）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-准备数据存放目录"><span class="toc-number">2.2.</span> <span class="toc-text">2. 准备数据存放目录</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-分别启动三台服务器"><span class="toc-number">2.3.</span> <span class="toc-text">3. 分别启动三台服务器</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-初始化副本集（使用客户端连接任意Mongo-Server）"><span class="toc-number">2.4.</span> <span class="toc-text">4. 初始化副本集（使用客户端连接任意Mongo Server）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-查看副本集状态"><span class="toc-number">2.5.</span> <span class="toc-text">5. 查看副本集状态</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#6-测试副本集数据同步"><span class="toc-number">2.6.</span> <span class="toc-text">6. 测试副本集数据同步</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#7-测试集群容错"><span class="toc-number">2.7.</span> <span class="toc-text">7. 测试集群容错</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>

@@ -26,7 +26,7 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/update3.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/delete.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/16/MongoDB常用操作-CRUD/delete1.png">
-<meta property="og:updated_time" content="2018-01-17T04:26:56.176Z">
+<meta property="og:updated_time" content="2018-01-31T03:53:44.023Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB常用操作命令 (二)">
 <meta name="twitter:description" content="一、插入操作1. 单个文档插入">
@@ -174,6 +174,33 @@
         
       </header>
     
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+              <span class="btn-bg"></span>
+              <span class="btn-text">文章导航</span>
+              </p>
+      <div id="toc-article" class="toc-article">
+          <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、插入操作"><span class="toc-number">1.</span> <span class="toc-text">一、插入操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-单个文档插入"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. 单个文档插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-批量文档插入"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 批量文档插入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、查询操作"><span class="toc-number">2.</span> <span class="toc-text">二、查询操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-查集合中所有文档"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. 查集合中所有文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-指定条件查询-lt-field1-gt-lt-value1-gt"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 指定条件查询 { &lt;field1&gt;: &lt;value1&gt;}</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、修改文档"><span class="toc-number">3.</span> <span class="toc-text">三、修改文档</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-db-collection-update-lt-filter-gt-lt-update-gt"><span class="toc-number">3.0.1.</span> <span class="toc-text">1. db.collection.update(&lt;filter&gt;, &lt;update&gt;);</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-db-collection-updateOne-lt-filter-gt-lt-update-operator-gt-lt-field1-gt-lt-value1-gt-只修改符合条件的第一条文档"><span class="toc-number">3.0.2.</span> <span class="toc-text">2. db.collection.updateOne(&lt;filter&gt;, {&lt;update operator&gt;: { &lt;field1&gt;: &lt;value1&gt;, ... }) 只修改符合条件的第一条文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-db-collection-updateMany-lt-filter-gt-lt-update-operator-gt-lt-field1-gt-lt-value1-gt-将符合条件的所有文档都进行修改"><span class="toc-number">3.0.3.</span> <span class="toc-text">3. db.collection.updateMany(&lt;filter&gt;, {&lt;update operator&gt;: { &lt;field1&gt;: &lt;value1&gt;, ... })  将符合条件的所有文档都进行修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-db-collection-replaceOne-替换除-id外的所有属性"><span class="toc-number">3.0.4.</span> <span class="toc-text">4. db.collection.replaceOne() 替换除_id外的所有属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、删除文档"><span class="toc-number">4.</span> <span class="toc-text">四、删除文档</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-db-collection-deleteOne-lt-field1-gt-lt-value1-gt"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. db.collection.deleteOne({&lt;field1&gt;: &lt;value1&gt;,...})</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-db-collection-deleteMany-lt-field1-gt-lt-value1-gt"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. db.collection.deleteMany({&lt;field1&gt;: &lt;value1&gt;,...})</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、-复杂查询"><span class="toc-number">5.</span> <span class="toc-text">五、 复杂查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-使用查询操作符指定条件"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 使用查询操作符指定条件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-查询结果排序"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. 查询结果排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-分页查询"><span class="toc-number">5.0.3.</span> <span class="toc-text">3. 分页查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-总条数"><span class="toc-number">5.0.4.</span> <span class="toc-text">4. 总条数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-模糊查询"><span class="toc-number">5.0.5.</span> <span class="toc-text">5. 模糊查询</span></a></li></ol></li></ol></li></ol>
+             </div>
+       <script type="text/javascript">
+      function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+       </script>
+          
+    <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <img src="/2018/01/16/MongoDB常用操作-CRUD/logo.jpg" title="图片">
@@ -375,19 +402,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、插入操作"><span class="toc-number">1.</span> <span class="toc-text">一、插入操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-单个文档插入"><span class="toc-number">1.0.1.</span> <span class="toc-text">1. 单个文档插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-批量文档插入"><span class="toc-number">1.0.2.</span> <span class="toc-text">2. 批量文档插入</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、查询操作"><span class="toc-number">2.</span> <span class="toc-text">二、查询操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-查集合中所有文档"><span class="toc-number">2.0.1.</span> <span class="toc-text">1. 查集合中所有文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-指定条件查询-lt-field1-gt-lt-value1-gt"><span class="toc-number">2.0.2.</span> <span class="toc-text">2. 指定条件查询 { &lt;field1&gt;: &lt;value1&gt;}</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、修改文档"><span class="toc-number">3.</span> <span class="toc-text">三、修改文档</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-db-collection-update-lt-filter-gt-lt-update-gt"><span class="toc-number">3.0.1.</span> <span class="toc-text">1. db.collection.update(&lt;filter&gt;, &lt;update&gt;);</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-db-collection-updateOne-lt-filter-gt-lt-update-operator-gt-lt-field1-gt-lt-value1-gt-只修改符合条件的第一条文档"><span class="toc-number">3.0.2.</span> <span class="toc-text">2. db.collection.updateOne(&lt;filter&gt;, {&lt;update operator&gt;: { &lt;field1&gt;: &lt;value1&gt;, ... }) 只修改符合条件的第一条文档</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-db-collection-updateMany-lt-filter-gt-lt-update-operator-gt-lt-field1-gt-lt-value1-gt-将符合条件的所有文档都进行修改"><span class="toc-number">3.0.3.</span> <span class="toc-text">3. db.collection.updateMany(&lt;filter&gt;, {&lt;update operator&gt;: { &lt;field1&gt;: &lt;value1&gt;, ... })  将符合条件的所有文档都进行修改</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-db-collection-replaceOne-替换除-id外的所有属性"><span class="toc-number">3.0.4.</span> <span class="toc-text">4. db.collection.replaceOne() 替换除_id外的所有属性</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、删除文档"><span class="toc-number">4.</span> <span class="toc-text">四、删除文档</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-db-collection-deleteOne-lt-field1-gt-lt-value1-gt"><span class="toc-number">4.0.1.</span> <span class="toc-text">1. db.collection.deleteOne({&lt;field1&gt;: &lt;value1&gt;,...})</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-db-collection-deleteMany-lt-field1-gt-lt-value1-gt"><span class="toc-number">4.0.2.</span> <span class="toc-text">2. db.collection.deleteMany({&lt;field1&gt;: &lt;value1&gt;,...})</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#五、-复杂查询"><span class="toc-number">5.</span> <span class="toc-text">五、 复杂查询</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-使用查询操作符指定条件"><span class="toc-number">5.0.1.</span> <span class="toc-text">1. 使用查询操作符指定条件</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-查询结果排序"><span class="toc-number">5.0.2.</span> <span class="toc-text">2. 查询结果排序</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-分页查询"><span class="toc-number">5.0.3.</span> <span class="toc-text">3. 分页查询</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-总条数"><span class="toc-number">5.0.4.</span> <span class="toc-text">4. 总条数</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#5-模糊查询"><span class="toc-number">5.0.5.</span> <span class="toc-text">5. 模糊查询</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>

@@ -25,7 +25,7 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/6.jpg">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/7.jpg">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/07/Solr轻松入门/8.jpg">
-<meta property="og:updated_time" content="2018-01-07T03:30:31.797Z">
+<meta property="og:updated_time" content="2018-01-31T03:47:20.018Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Solr轻松入门">
 <meta name="twitter:description" content="1. Solr概述 Solr是Apache下的顶级项目，采用java开发，它是基于Lucene的全文检索服务器。Solr提供了比Lucene更为丰富的查询语言，同时实现了可配置、可扩展，并对索引、搜索性能进行了优化。 Solr可以运行在Jetty、Tomcat等Web服务器。">
@@ -173,6 +173,33 @@
         
       </header>
     
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+              <span class="btn-bg"></span>
+              <span class="btn-text">文章导航</span>
+              </p>
+      <div id="toc-article" class="toc-article">
+          <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Solr概述"><span class="toc-number">1.</span> <span class="toc-text">1. Solr概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Solr架构（体系架构）"><span class="toc-number">2.</span> <span class="toc-text">2. Solr架构（体系架构）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Solr安装和环境搭建"><span class="toc-number">3.</span> <span class="toc-text">3. Solr安装和环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-solr的相关配置文件"><span class="toc-number">4.</span> <span class="toc-text">4. solr的相关配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-solr整合中文分词器（IK、mmseg4j、smartcn）"><span class="toc-number">5.</span> <span class="toc-text">5. solr整合中文分词器（IK、mmseg4j、smartcn）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-使用solr的dataimport导入数据库数据"><span class="toc-number">6.</span> <span class="toc-text">6. 使用solr的dataimport导入数据库数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-查询参数"><span class="toc-number">7.</span> <span class="toc-text">7. 查询参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-SolrJ的使用"><span class="toc-number">8.</span> <span class="toc-text">8. SolrJ的使用</span></a></li></ol>
+             </div>
+       <script type="text/javascript">
+      function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+       </script>
+          
+    <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <img src="/2018/01/07/Solr轻松入门/logo.jpg" title="学习笔记">
@@ -573,19 +600,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Solr概述"><span class="toc-number">1.</span> <span class="toc-text">1. Solr概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Solr架构（体系架构）"><span class="toc-number">2.</span> <span class="toc-text">2. Solr架构（体系架构）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Solr安装和环境搭建"><span class="toc-number">3.</span> <span class="toc-text">3. Solr安装和环境搭建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-solr的相关配置文件"><span class="toc-number">4.</span> <span class="toc-text">4. solr的相关配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-solr整合中文分词器（IK、mmseg4j、smartcn）"><span class="toc-number">5.</span> <span class="toc-text">5. solr整合中文分词器（IK、mmseg4j、smartcn）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-使用solr的dataimport导入数据库数据"><span class="toc-number">6.</span> <span class="toc-text">6. 使用solr的dataimport导入数据库数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-查询参数"><span class="toc-number">7.</span> <span class="toc-text">7. 查询参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-SolrJ的使用"><span class="toc-number">8.</span> <span class="toc-text">8. SolrJ的使用</span></a></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>

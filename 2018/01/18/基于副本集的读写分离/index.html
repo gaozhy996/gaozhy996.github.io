@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/rws0.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/rws1.png">
 <meta property="og:image" content="http://www.gaozhy.cn/2018/01/18/基于副本集的读写分离/rws2.png">
-<meta property="og:updated_time" content="2018-01-19T09:00:30.777Z">
+<meta property="og:updated_time" content="2018-01-31T03:54:56.622Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MongoDB基于副本集完成读写分离 (五)">
 <meta name="twitter:description" content="好了，我们在上一个章节（搭建MongoDB副本集 (四) ）中，已经介绍过利用Mongo副本集可以搭建一个高可用的集群环境。但是在默情况下，读写操作都在Primary上进行，在高并发的环境下，Primary的负载较大。那如何解决这个问题呢？，我们可以利用读写分离，也就是Primary负责写操作，Secondary负责读操作，分摊Primary的压力。">
@@ -168,6 +168,33 @@
         
       </header>
     
+    <!-- 目录内容 -->
+    
+        <p class="show-toc-btn" id="show-toc-btn" onclick="showToc();" style="display:none">
+              <span class="btn-bg"></span>
+              <span class="btn-text">文章导航</span>
+              </p>
+      <div id="toc-article" class="toc-article">
+          <span id="toc-close" class="toc-close" title="隐藏导航" onclick="showBtn();">×</span>
+        <strong class="toc-title">文章目录</strong>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、MongoDB-drivers-support-five-read-preference-modes"><span class="toc-number">1.</span> <span class="toc-text">一、MongoDB drivers support five read preference modes.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、配置"><span class="toc-number">2.</span> <span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、代码如下"><span class="toc-number">3.</span> <span class="toc-text">三、代码如下</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-applicationContext-xml"><span class="toc-number">3.0.1.</span> <span class="toc-text">1. applicationContext.xml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Person实体"><span class="toc-number">3.0.2.</span> <span class="toc-text">2. Person实体</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-测试数据插入"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.测试数据插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-测试数据访问"><span class="toc-number">3.0.4.</span> <span class="toc-text">4. 测试数据访问</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、总结"><span class="toc-number">4.</span> <span class="toc-text">四、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#NOTE"><span class="toc-number">4.0.1.</span> <span class="toc-text">NOTE:</span></a></li></ol></li></ol></li></ol>
+             </div>
+       <script type="text/javascript">
+      function showToc(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:block");
+        show_toc_btn.setAttribute("style","display:none");
+        };
+      function showBtn(){
+        var toc_article = document.getElementById("toc-article");
+        var show_toc_btn = document.getElementById("show-toc-btn");
+        toc_article.setAttribute("style","display:none");
+        show_toc_btn.setAttribute("style","display:block");
+        };
+       </script>
+          
+    <!-- 目录内容结束 -->
     <div class="article-entry" itemprop="articleBody">
       
         <img src="/2018/01/18/基于副本集的读写分离/logo.jpg" title="logo">
@@ -396,19 +423,6 @@
             </div>
         </div>
         
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#一、MongoDB-drivers-support-five-read-preference-modes"><span class="toc-number">1.</span> <span class="toc-text">一、MongoDB drivers support five read preference modes.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#二、配置"><span class="toc-number">2.</span> <span class="toc-text">二、配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#三、代码如下"><span class="toc-number">3.</span> <span class="toc-text">三、代码如下</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-applicationContext-xml"><span class="toc-number">3.0.1.</span> <span class="toc-text">1. applicationContext.xml</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Person实体"><span class="toc-number">3.0.2.</span> <span class="toc-text">2. Person实体</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-测试数据插入"><span class="toc-number">3.0.3.</span> <span class="toc-text">3.测试数据插入</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#4-测试数据访问"><span class="toc-number">3.0.4.</span> <span class="toc-text">4. 测试数据访问</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四、总结"><span class="toc-number">4.</span> <span class="toc-text">四、总结</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#NOTE"><span class="toc-number">4.0.1.</span> <span class="toc-text">NOTE:</span></a></li></ol></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
         
     </div>
 </aside>
