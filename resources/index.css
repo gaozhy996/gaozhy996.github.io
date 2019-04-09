@@ -61,8 +61,8 @@ body {
 }*/
 
 #bg2 {
-  /* background: url(../backgroud/596b0d85a3c12.jpg) no-repeat center center; */
-  background: url(https://i.loli.net/2017/07/16/596b0d85a3c12.jpg) no-repeat center center; 
+   background: url(../backgroud/596b0d85a3c12.jpg) no-repeat center center; 
+  /*background: url(https://i.loli.net/2017/07/16/596b0d85a3c12.jpg) no-repeat center center;*/ 
   background-size: cover;
 }
 
@@ -72,14 +72,14 @@ body {
 }*/
 
 #bg4 {
-  /* background: url(../backgroud/596b0d89382e9.jpg) no-repeat center center; */
-  background: url(https://i.loli.net/2017/07/16/596b0d89382e9.jpg) no-repeat center center;
+   background: url(../backgroud/596b0d89382e9.jpg) no-repeat center center; 
+  /*background: url(https://i.loli.net/2017/07/16/596b0d89382e9.jpg) no-repeat center center;*/
   background-size: cover;
 }
 
 #bg5 {
-  /* background: url(../backgroud/596b0d89de430.jpg) no-repeat center center; */
-  background: url(https://i.loli.net/2017/07/16/596b0d89de430.jpg) no-repeat center center;
+   background: url(../backgroud/596b0d89de430.jpg) no-repeat center center; 
+  /*background: url(https://i.loli.net/2017/07/16/596b0d89de430.jpg) no-repeat center center;*/
   background-size: cover;
 }
 
@@ -104,8 +104,8 @@ body {
 }*/
 
 #bg10 {
-  /* background: url(../backgroud/596b0d8b94e96.jpg) no-repeat center center; */
-  background: url(https://i.loli.net/2017/07/16/596b0d8b94e96.jpg) no-repeat center center;
+   background: url(../backgroud/596b0d8b94e96.jpg) no-repeat center center; 
+  /*background: url(https://i.loli.net/2017/07/16/596b0d8b94e96.jpg) no-repeat center center;*/
   background-size: cover;
 }
 
@@ -120,8 +120,8 @@ body {
 }*/
 
 #bg13 {
-  /*background: url(../backgroud/596b11a27d9d7.jpg) no-repeat center center;*/
-  background: url(https://i.loli.net/2017/07/16/596b11a27d9d7.jpg) no-repeat center center;
+  background: url(../backgroud/596b11a27d9d7.jpg) no-repeat center center;
+  /*background: url(https://i.loli.net/2017/07/16/596b11a27d9d7.jpg) no-repeat center center;*/
   background-size: cover;
 }
 
@@ -141,15 +141,15 @@ body {
 }*/
 
 #bg17 {
-  /* background: url(../backgroud/596b11a2abdaf.jpg) no-repeat center center; */
-  background: url(https://i.loli.net/2017/07/16/596b11a2abdaf.jpg) no-repeat center center;
+  background: url(../backgroud/596b11a2abdaf.jpg) no-repeat center center; 
+  /*background: url(https://i.loli.net/2017/07/16/596b11a2abdaf.jpg) no-repeat center center;*/
   background-size: cover;
 }
 
-#bg18 {
+/*#bg18 {
   background: url(https://i.loli.net/2017/07/16/596b11a2b7c1f.jpg) no-repeat center center;
   background-size: cover;
-}
+}*/
 
 .fadein {
   opacity: 100;
